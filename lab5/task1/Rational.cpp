@@ -115,7 +115,14 @@ const CRational operator -(CRational const & number1, CRational const & number2)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 9. Реализовать оператор *=
 //////////////////////////////////////////////////////////////////////////
+CRational & CRational::operator *=(CRational const & number)
+{
+	m_numerator *= number.GetNumerator();
+	m_denominator *= number.GetDenominator();
+	Normalize();
 
+	return *this;
+}
 
 
 
