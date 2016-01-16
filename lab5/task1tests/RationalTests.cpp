@@ -57,6 +57,10 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 		VerifyRational(CRational(-6, -8), 3, 4);
 		VerifyRational(CRational(-10, 20), -1, 2);
 	}
+	BOOST_AUTO_TEST_CASE(may_not_have_zero_denominator)
+	{
+		BOOST_CHECK_THROW(CRational(1, 0), std::invalid_argument);
+	}
 
 
 
@@ -68,7 +72,14 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	CRational r(3, 5)
 //	cout << r.ToDouble(); // Должно вывести 0.6
 //////////////////////////////////////////////////////////////////////////
-
+	BOOST_AUTO_TEST_CASE(can_be_converted_to_double)
+	{
+		const double epsilon = 1e-5;
+		BOOST_CHECK_CLOSE_FRACTION(CRational(3, 5).ToDouble(), 0.6, epsilon);
+		BOOST_CHECK_CLOSE_FRACTION(CRational(3, -5).ToDouble(), -0.6, epsilon);
+		BOOST_CHECK_CLOSE_FRACTION(CRational(-3, 5).ToDouble(), -0.6, epsilon);
+		BOOST_CHECK_CLOSE_FRACTION(CRational(1, 3).ToDouble(), 0.3333333, epsilon);
+	}
 
 
 
