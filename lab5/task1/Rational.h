@@ -201,3 +201,5 @@ CRational const operator+(CRational const & rational1, CRational const & rationa
 CRational const operator/(CRational const & rational1, CRational const & rational2);
 
 const CRational operator -(CRational const & number1, CRational const & number2);
+
+std::ostream & operator<<(std::ostream & stream, CRational const & rational);

@@ -174,6 +174,11 @@ CRational & CRational::operator/=(CRational const & rational)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 13. Реализовать оператор вывода рационального числа в выходной поток 
 //////////////////////////////////////////////////////////////////////////
+std::ostream & operator<<(std::ostream & stream, CRational const & rational)
+{
+	stream << rational.GetNumerator() << "/" << rational.GetDenominator();
+	return stream;
+}
 
 
 
