@@ -206,6 +206,13 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 		VerifyRational(CRational(12, 7) -= CRational(5, 7), 1, 1);
 	}
 
+	BOOST_AUTO_TEST_CASE(can_be_decreased_by_integer)
+	{
+		VerifyRational(CRational(1, 2) -= 1, -1, 2);
+		VerifyRational(CRational(2, 3) -= 2, -4, 3);
+		VerifyRational(CRational(3, 5) -= 0, 3, 5);
+	}
+
 	BOOST_AUTO_TEST_CASE(can_be_decreased_several_times_and_the_original_variable_is_updated)
 	{
 		CRational minued(1, 2);
