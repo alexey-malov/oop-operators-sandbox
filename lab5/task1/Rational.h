@@ -90,7 +90,16 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	CRational & operator-= (CRational const& subtrahend)
 	{
-		m_numerator -= subtrahend.m_numerator;
+		if (m_denominator != subtrahend.m_denominator)
+		{
+			m_numerator *= subtrahend.m_denominator;
+			m_numerator -= subtrahend.m_numerator * m_denominator;
+			m_denominator = subtrahend.m_denominator * m_denominator;
+		}
+		else
+		{
+			m_numerator -= subtrahend.m_numerator;
+		}
 		return *this;
 	}
 

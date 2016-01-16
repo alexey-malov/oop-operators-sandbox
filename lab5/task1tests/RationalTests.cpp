@@ -193,6 +193,14 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 		VerifyRational(minued, 1, 3);
 	}
 
+	BOOST_AUTO_TEST_CASE(can_be_decreased_by_another_rational_with_coprime_denominator)
+	{
+		CRational minued(1, 3);
+		minued -= CRational(1, 2);
+
+		VerifyRational(minued, -1, 6);
+	}
+
 //////////////////////////////////////////////////////////////////////////
 // TODO: 7. Реализовать оператор *
 // Возвращает результат произведения рациональных чисел, 
