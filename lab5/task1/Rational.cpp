@@ -117,8 +117,8 @@ CRational & CRational::operator -= (CRational const& subtrahend)
 {
 	if (m_denominator != subtrahend.GetDenominator())
 	{
-		m_numerator *= subtrahend.GetDenominator();
-		m_numerator -= subtrahend.GetNumerator() * m_denominator;
+		m_numerator = m_numerator * subtrahend.GetDenominator()
+			          - subtrahend.GetNumerator() * m_denominator;
 		m_denominator *= subtrahend.GetDenominator();
 	}
 	else
