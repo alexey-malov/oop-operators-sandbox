@@ -115,17 +115,10 @@ CRational CRational::operator += (CRational const & rational)
 //////////////////////////////////////////////////////////////////////////
 CRational & CRational::operator -= (CRational const& subtrahend)
 {
-	if (m_denominator != subtrahend.GetDenominator())
-	{
-		m_numerator = m_numerator * subtrahend.GetDenominator()
-			          - subtrahend.GetNumerator() * m_denominator;
-		m_denominator *= subtrahend.GetDenominator();
-		Normalize();
-	}
-	else
-	{
-		m_numerator -= subtrahend.GetNumerator();
-	}
+	m_numerator = m_numerator * subtrahend.GetDenominator()
+				- subtrahend.GetNumerator() * m_denominator;
+	m_denominator *= subtrahend.GetDenominator();
+	Normalize();
 	return *this;
 }
 

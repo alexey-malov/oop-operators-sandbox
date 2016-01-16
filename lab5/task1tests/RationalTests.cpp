@@ -187,26 +187,23 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 //////////////////////////////////////////////////////////////////////////
 	BOOST_AUTO_TEST_CASE(can_be_decreased_by_another_rational_with_same_denominator)
 	{
-		CRational minued(2, 3);
-		minued -= CRational(1, 3);
-
-		VerifyRational(minued, 1, 3);
+		VerifyRational(CRational(2, 3) -= CRational(1, 3),  1, 3);
+		VerifyRational(CRational(1, 7) -= CRational(5, 7),  -4, 7);
+		VerifyRational(CRational(3, 8) -= CRational(-2, 8), 5, 8);
 	}
 
 	BOOST_AUTO_TEST_CASE(can_be_decreased_by_another_rational_with_coprime_denominator)
 	{
-		CRational minued(1, 3);
-		minued -= CRational(1, 2);
-
-		VerifyRational(minued, -1, 6);
+		VerifyRational(CRational(1, 3) -= CRational(1, 2),   -1, 6);
+		VerifyRational(CRational(-3, 5) -= CRational(1, 9),  -32, 45);
+		VerifyRational(CRational(3, 14) -= CRational(2, 15), 17, 210);
 	}
 
 	BOOST_AUTO_TEST_CASE(can_be_decreased_by_another_rational_and_stays_normalized)
 	{
-		CRational minued(1, 2);
-		minued -= CRational(1, 6);
-		
-		VerifyRational(minued, 1, 3);
+		VerifyRational(CRational(1, 2) -= CRational(1, 6),  1, 3);
+		VerifyRational(CRational(2, 7) -= CRational(2, 7),  0, 1);
+		VerifyRational(CRational(12, 7) -= CRational(5, 7), 1, 1);
 	}
 
 	BOOST_AUTO_TEST_CASE(can_be_decreased_several_times_and_the_original_variable_is_updated)
