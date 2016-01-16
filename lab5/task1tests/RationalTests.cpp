@@ -206,7 +206,15 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 //	(1/2) ⁄ 5     = (1/10)
 //	7 ⁄ (2/3)     = (21/2)
 //////////////////////////////////////////////////////////////////////////
+	BOOST_AUTO_TEST_CASE(has_division_operation)
+	{
+		VerifyRational(CRational(1, 2) / CRational(2, 3), 3, 4);
+		VerifyRational(CRational(1, 2) / 5, 1, 10);
+		VerifyRational(7 / CRational(2, 3), 21, 2);
 
+		VerifyRational(CRational(1, 2) / 1, 1, 2);
+		VerifyRational(1 / CRational(1, 2), 2, 1);
+	}
 
 
 
