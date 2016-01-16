@@ -100,7 +100,13 @@ const CRational operator -(CRational const & number1, CRational const & number2)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 5. Реализовать оператор +=
 //////////////////////////////////////////////////////////////////////////
-
+CRational CRational::operator += (CRational const & rational)
+{
+	m_numerator = (rational.GetNumerator() * m_denominator) + (m_numerator * rational.GetDenominator());
+	m_denominator *= rational.GetDenominator();
+	Normalize();
+	return *this;
+}
 
 
 
