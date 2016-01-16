@@ -2,12 +2,17 @@
 #include "Rational.h"
 #include <utility>
 #include <assert.h>
+#include <stdexcept>
 
 
 CRational::CRational(int numerator, int denominator)
 	: m_numerator(numerator)
 	, m_denominator(denominator)
 {
+	if (denominator == 0)
+	{
+		throw std::invalid_argument("Denominator must not be zero");
+	}
 	if (denominator < 0)
 	{
 		m_numerator = -m_numerator;
