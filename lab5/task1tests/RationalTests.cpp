@@ -126,22 +126,13 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //////////////////////////////////////////////////////////////////////////
 BOOST_AUTO_TEST_CASE(operator_binary_minus)
 {
-	CRational number1(1, 2);
-	CRational number2(1, 6);
-	CRational number3 = number1 - number2;
-	VerifyRational(number3, 1, 3);
-
-	number3 = number1 - 1;
-	VerifyRational(number3, -1, 2);
-
-	number3 = 1 - number1;
-	VerifyRational(number3, 1, 2);
-
-	number3 = 0 - number1;
-	VerifyRational(number3, -1, 2);
-
-	number3 = number2 - 0;
-	VerifyRational(number3, 1, 6);
+	CRational const r1_2(1, 2);
+	CRational const r1_6(1, 6);
+	VerifyRational(r1_2 - r1_6, 1, 3);
+	VerifyRational(r1_2 - 1, -1, 2);
+	VerifyRational(1 - r1_2, 1, 2);
+	VerifyRational(0 - r1_2, -1, 2);
+	VerifyRational(r1_6 - 0, 1, 6);
 }
 
 
