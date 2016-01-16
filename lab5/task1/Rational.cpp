@@ -1,6 +1,7 @@
 ﻿#include "stdafx.h"
 #include "Rational.h"
 #include <utility>
+#include <assert.h>
 
 
 CRational::CRational(int numerator, int denominator)
