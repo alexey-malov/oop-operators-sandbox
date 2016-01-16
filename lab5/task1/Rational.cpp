@@ -83,8 +83,12 @@ CRational const CRational::operator+() const
 //////////////////////////////////////////////////////////////////////////
 // TODO: 4. Реализовать бинарный -
 //////////////////////////////////////////////////////////////////////////
-
-
+const CRational operator -(CRational const & number1, CRational const & number2)
+{
+	int numerator = number1.GetNumerator() * number2.GetDenominator() - number2.GetNumerator() * number1.GetDenominator();
+	int denominator = number1.GetDenominator() * number2.GetDenominator();
+	return CRational(numerator, denominator);
+}
 
 
 //////////////////////////////////////////////////////////////////////////
