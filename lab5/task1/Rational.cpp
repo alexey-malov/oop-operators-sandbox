@@ -113,7 +113,20 @@ CRational CRational::operator += (CRational const & rational)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 6. Реализовать оператор -=
 //////////////////////////////////////////////////////////////////////////
-
+CRational & CRational::operator -= (CRational const& subtrahend)
+{
+	if (m_denominator != subtrahend.m_denominator)
+	{
+		m_numerator *= subtrahend.m_denominator;
+		m_numerator -= subtrahend.m_numerator * m_denominator;
+		m_denominator = subtrahend.m_denominator * m_denominator;
+	}
+	else
+	{
+		m_numerator -= subtrahend.m_numerator;
+	}
+	return *this;
+}
 
 
 

@@ -88,21 +88,7 @@ public:
 	// (1/2) -= (1/6)  → (1/3)
 	// (1/2) -= 1      → (-1/2)
 	//////////////////////////////////////////////////////////////////////////
-	CRational & operator-= (CRational const& subtrahend)
-	{
-		if (m_denominator != subtrahend.m_denominator)
-		{
-			m_numerator *= subtrahend.m_denominator;
-			m_numerator -= subtrahend.m_numerator * m_denominator;
-			m_denominator = subtrahend.m_denominator * m_denominator;
-		}
-		else
-		{
-			m_numerator -= subtrahend.m_numerator;
-		}
-		return *this;
-	}
-
+	CRational & operator -= (CRational const& subtrahend);
 
 	//////////////////////////////////////////////////////////////////////////
 	// TODO: 7. Реализовать оператор *
