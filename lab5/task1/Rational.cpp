@@ -76,8 +76,14 @@ CRational const CRational::operator+() const
 //////////////////////////////////////////////////////////////////////////
 // TODO: 3. Реализовать бинарный +
 //////////////////////////////////////////////////////////////////////////
-
-
+CRational const operator+(CRational const & rational1, CRational const & rational2)
+{
+	int resultDenominator = rational1.GetDenominator() * rational2.GetDenominator();
+	int resultNumerator1 = rational1.GetNumerator() * rational2.GetDenominator();
+	int resultNumerator2 = rational2.GetNumerator() * rational1.GetDenominator();
+	int resultNumerator = resultNumerator1 + resultNumerator2;
+	return CRational(resultNumerator, resultDenominator);
+}
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -108,6 +114,12 @@ const CRational operator -(CRational const & number1, CRational const & number2)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 7. Реализовать оператор *
 //////////////////////////////////////////////////////////////////////////
+CRational const operator/(CRational const & rational1, CRational const & rational2)
+{
+	int resultDenominator = rational1.GetDenominator() * rational2.GetNumerator();
+	int resultNumerator = rational1.GetNumerator() * rational2.GetDenominator();
+	return CRational(resultNumerator, resultDenominator);
+}
 
 
 
