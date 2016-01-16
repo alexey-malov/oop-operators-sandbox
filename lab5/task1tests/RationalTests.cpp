@@ -127,7 +127,20 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) + 1     = (3/2)
 //	1 + (1/2)     = (3/2)
 //////////////////////////////////////////////////////////////////////////
+	BOOST_AUTO_TEST_CASE(has_binary_addition_operation)
+	{
+		VerifyRational(CRational(1, 2) + CRational(1, 6), 2, 3);
+		VerifyRational(CRational(1, 2) + 1, 3, 2);
+		VerifyRational(1 + CRational(1, 2), 3, 2);
+		VerifyRational(CRational(1, 2) + CRational(1, 2), 1, 1);
+	}
 
+	BOOST_AUTO_TEST_CASE(does_not_changed_when_zero_is_added)
+	{
+		VerifyRational(CRational(1, 2) + CRational(), 1, 2);
+		VerifyRational(CRational(1, 2) + 0, 1, 2);
+		VerifyRational(0 + CRational(1, 2), 1, 2);
+	}
 
 
 
@@ -139,8 +152,16 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) - 1     = (-1/2)
 //	1 - (1/2)     = (1/2)
 //////////////////////////////////////////////////////////////////////////
-
-
+BOOST_AUTO_TEST_CASE(operator_binary_minus)
+{
+	CRational const r1_2(1, 2);
+	CRational const r1_6(1, 6);
+	VerifyRational(r1_2 - r1_6, 1, 3);
+	VerifyRational(r1_2 - 1, -1, 2);
+	VerifyRational(1 - r1_2, 1, 2);
+	VerifyRational(0 - r1_2, -1, 2);
+	VerifyRational(r1_6 - 0, 1, 6);
+}
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -150,8 +171,12 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) += (1/6)  → (2/3)
 //	(1/2) += 1      → (3/2)
 //////////////////////////////////////////////////////////////////////////
-
-
+	BOOST_AUTO_TEST_CASE(has_adding_assignment_operator)
+	{
+		VerifyRational((CRational(1, 2) += CRational(1, 6)), 2, 3);
+		VerifyRational((CRational(1, 2) += 1), 3, 2);
+		VerifyRational((CRational(8, -16) += CRational(1, 6)), -1, 3);
+	}
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -189,7 +214,15 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) ⁄ 5     = (1/10)
 //	7 ⁄ (2/3)     = (21/2)
 //////////////////////////////////////////////////////////////////////////
+	BOOST_AUTO_TEST_CASE(has_division_operation)
+	{
+		VerifyRational(CRational(1, 2) / CRational(2, 3), 3, 4);
+		VerifyRational(CRational(1, 2) / 5, 1, 10);
+		VerifyRational(7 / CRational(2, 3), 21, 2);
 
+		VerifyRational(CRational(1, 2) / 1, 1, 2);
+		VerifyRational(1 / CRational(1, 2), 2, 1);
+	}
 
 
 

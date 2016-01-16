@@ -76,21 +76,37 @@ CRational const CRational::operator+() const
 //////////////////////////////////////////////////////////////////////////
 // TODO: 3. Реализовать бинарный +
 //////////////////////////////////////////////////////////////////////////
-
-
+CRational const operator+(CRational const & rational1, CRational const & rational2)
+{
+	int resultDenominator = rational1.GetDenominator() * rational2.GetDenominator();
+	int resultNumerator1 = rational1.GetNumerator() * rational2.GetDenominator();
+	int resultNumerator2 = rational2.GetNumerator() * rational1.GetDenominator();
+	int resultNumerator = resultNumerator1 + resultNumerator2;
+	return CRational(resultNumerator, resultDenominator);
+}
 
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 4. Реализовать бинарный -
 //////////////////////////////////////////////////////////////////////////
-
-
+const CRational operator -(CRational const & number1, CRational const & number2)
+{
+	int numerator = number1.GetNumerator() * number2.GetDenominator() - number2.GetNumerator() * number1.GetDenominator();
+	int denominator = number1.GetDenominator() * number2.GetDenominator();
+	return CRational(numerator, denominator);
+}
 
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 5. Реализовать оператор +=
 //////////////////////////////////////////////////////////////////////////
-
+CRational CRational::operator += (CRational const & rational)
+{
+	m_numerator = (rational.GetNumerator() * m_denominator) + (m_numerator * rational.GetDenominator());
+	m_denominator *= rational.GetDenominator();
+	Normalize();
+	return *this;
+}
 
 
 
@@ -104,6 +120,12 @@ CRational const CRational::operator+() const
 //////////////////////////////////////////////////////////////////////////
 // TODO: 7. Реализовать оператор *
 //////////////////////////////////////////////////////////////////////////
+CRational const operator/(CRational const & rational1, CRational const & rational2)
+{
+	int resultDenominator = rational1.GetDenominator() * rational2.GetNumerator();
+	int resultNumerator = rational1.GetNumerator() * rational2.GetDenominator();
+	return CRational(resultNumerator, resultDenominator);
+}
 
 CRational const operator *(CRational const& r1, CRational const& r2)
 {
