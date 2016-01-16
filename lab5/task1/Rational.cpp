@@ -105,7 +105,13 @@ CRational const CRational::operator+() const
 // TODO: 7. Реализовать оператор *
 //////////////////////////////////////////////////////////////////////////
 
+CRational const operator *(CRational const& r1, CRational const& r2)
+{
+	int newNum = r1.GetNumerator() * r2.GetNumerator();
+	int newDen = r1.GetDenominator() * r2.GetDenominator();
 
+	return CRational(newNum, newDen);
+}
 
 
 //////////////////////////////////////////////////////////////////////////

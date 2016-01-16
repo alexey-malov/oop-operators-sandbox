@@ -173,9 +173,13 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(7*2) / 3     = (14/3)
 //////////////////////////////////////////////////////////////////////////
 
-
-
-
+	BOOST_AUTO_TEST_CASE(has_binary_multiply)
+	{
+		VerifyRational(CRational(1, 2) * CRational(2, 3), 1, 3);
+		VerifyRational(CRational(1, 2) * CRational(-3), -3, 2);
+		VerifyRational(CRational(7) * CRational(1, 21), 1, 3);
+		VerifyRational(CRational(0) * CRational(-10, 15), 0, 1);
+	}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 8. Реализовать оператор /
