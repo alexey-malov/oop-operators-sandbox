@@ -198,4 +198,6 @@ unsigned GCD(unsigned a, unsigned b);
 
 CRational const operator+(CRational const & rational1, CRational const & rational2);
 
+CRational const operator/(CRational const & rational1, CRational const & rational2);
+
 const CRational operator -(CRational const & number1, CRational const & number2);
