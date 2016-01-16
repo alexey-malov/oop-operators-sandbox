@@ -27,6 +27,7 @@ int CRational::GetDenominator() const
 
 void CRational::Normalize()
 {
+	assert(m_denominator > 0);
 	const int gcd = GCD(abs(m_numerator), m_denominator);
 	m_numerator /= gcd;
 	m_denominator /= gcd;
