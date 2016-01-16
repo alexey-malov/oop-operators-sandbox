@@ -185,9 +185,13 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 // (1/2) -= (1/6)  → (1/3)
 // (1/2) -= 1      → (-1/2)
 //////////////////////////////////////////////////////////////////////////
+	BOOST_AUTO_TEST_CASE(can_be_decreased_by_another_rational_with_same_denominator)
+	{
+		CRational minued(2, 3);
+		minued -= CRational(1, 3);
 
-
-
+		VerifyRational(minued, 1, 3);
+	}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 7. Реализовать оператор *
