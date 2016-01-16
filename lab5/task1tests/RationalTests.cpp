@@ -242,7 +242,13 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 //	(1/2) /= (2/3) → (3/4)
 //	(1/2) /= 3     → (1/6)
 //////////////////////////////////////////////////////////////////////////
+	BOOST_AUTO_TEST_CASE(has_assignment_with_division_operation)
+	{
+		VerifyRational(CRational(1, 2) /= CRational(2, 3), 3, 4);
+		VerifyRational(CRational(1, 2) /= 3, 1, 6);
 
+		VerifyRational(CRational(1, 2) /= 1, 1, 2);
+	}
 
 
 
