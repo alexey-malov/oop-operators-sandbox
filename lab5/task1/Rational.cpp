@@ -127,7 +127,13 @@ CRational const operator/(CRational const & rational1, CRational const & rationa
 	return CRational(resultNumerator, resultDenominator);
 }
 
+CRational const operator *(CRational const& rational1, CRational const& rational2)
+{
+	int newNum = rational1.GetNumerator() * rational2.GetNumerator();
+	int newDen = rational1.GetDenominator() * rational2.GetDenominator();
 
+	return CRational(newNum, newDen);
+}
 
 
 //////////////////////////////////////////////////////////////////////////
