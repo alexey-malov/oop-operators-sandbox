@@ -120,6 +120,7 @@ CRational & CRational::operator -= (CRational const& subtrahend)
 		m_numerator = m_numerator * subtrahend.GetDenominator()
 			          - subtrahend.GetNumerator() * m_denominator;
 		m_denominator *= subtrahend.GetDenominator();
+		Normalize();
 	}
 	else
 	{

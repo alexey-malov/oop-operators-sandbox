@@ -201,6 +201,14 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 		VerifyRational(minued, -1, 6);
 	}
 
+	BOOST_AUTO_TEST_CASE(can_be_decreased_by_another_rational_and_stays_normalized)
+	{
+		CRational minued(1, 2);
+		minued -= CRational(1, 6);
+		
+		VerifyRational(minued, 1, 3);
+	}
+
 //////////////////////////////////////////////////////////////////////////
 // TODO: 7. Реализовать оператор *
 // Возвращает результат произведения рациональных чисел, 
