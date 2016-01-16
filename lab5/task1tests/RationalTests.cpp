@@ -230,7 +230,18 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 //	(1/2) *= (2/3) → (1/3)
 //	(1/2) *= 3     → (3/2)
 //////////////////////////////////////////////////////////////////////////
-
+BOOST_AUTO_TEST_CASE(operator_multiply_equals)
+{
+	CRational r1_2(1, 2);
+	CRational const r2_3(2, 3);
+	VerifyRational(r1_2 *= r2_3, 1, 3);
+	r1_2 = CRational(1, 2);
+	VerifyRational(r1_2 *= 3, 3, 2);
+	r1_2 = CRational(1, 2);
+	VerifyRational(r1_2 *= 0, 0, 1);
+	r1_2 = CRational(1, 2);
+	VerifyRational(r1_2 *= -2, -1, 1);
+}
 
 
 
