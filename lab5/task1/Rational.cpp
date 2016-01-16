@@ -49,7 +49,7 @@ unsigned GCD(unsigned a, unsigned b)
 //////////////////////////////////////////////////////////////////////////
 double CRational::ToDouble() const
 {
-	return ((double) m_numerator / m_denominator);
+	return (static_cast<double>(m_numerator) / m_denominator);
 }
 
 
