@@ -141,7 +141,13 @@ CRational const operator/(CRational const & rational1, CRational const & rationa
 //////////////////////////////////////////////////////////////////////////
 // TODO: 10. Реализовать оператор /=
 //////////////////////////////////////////////////////////////////////////
-
+CRational & CRational::operator/=(CRational const & rational)
+{
+	m_numerator *= rational.GetDenominator();
+	m_denominator *= rational.GetNumerator();
+	Normalize();
+	return *this;
+}
 
 
 
