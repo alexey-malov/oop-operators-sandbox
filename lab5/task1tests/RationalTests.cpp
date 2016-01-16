@@ -171,7 +171,7 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 //	(1/2) += (1/6)  → (2/3)
 //	(1/2) += 1      → (3/2)
 //////////////////////////////////////////////////////////////////////////
-	BOOST_AUTO_TEST_CASE(has_plus_equal_operator)
+	BOOST_AUTO_TEST_CASE(has_adding_assignment_operator)
 	{
 		VerifyRational((CRational(1, 2) += CRational(1, 6)), 2, 3);
 		VerifyRational((CRational(1, 2) += 1), 3, 2);
