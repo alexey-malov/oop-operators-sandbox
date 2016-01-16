@@ -278,7 +278,15 @@ BOOST_AUTO_TEST_CASE(operator_multiply_equals)
 //	(1/2) != 7     → true
 //	3 != (2/3)     → true
 //////////////////////////////////////////////////////////////////////////
-
+	BOOST_AUTO_TEST_CASE(has_equal_and_not_equal_operators)
+	{
+		BOOST_CHECK(CRational(1, 2) == CRational(1, 2));
+		BOOST_CHECK(CRational(4, 1) == 4);
+		BOOST_CHECK(3 == CRational(3, 1));
+		BOOST_CHECK(CRational(1, 2) != CRational(2, 3));
+		BOOST_CHECK(CRational(1, 2) != 7);
+		BOOST_CHECK(3 != CRational(2, 3));
+	}
 
 
 

@@ -173,7 +173,16 @@ CRational & CRational::operator/=(CRational const & rational)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 11. Реализовать операторы == и !=
 //////////////////////////////////////////////////////////////////////////
+bool operator == (CRational const & rational1, CRational const & rational2)
+{
+	return (rational1.GetNumerator() == rational2.GetNumerator()) 
+		&& (rational1.GetDenominator() == rational2.GetDenominator());
+}
 
+bool operator != (CRational const & rational1, CRational const & rational2)
+{
+	return !(rational1 == rational2);
+}
 
 
 
