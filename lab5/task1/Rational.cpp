@@ -127,7 +127,13 @@ CRational const operator/(CRational const & rational1, CRational const & rationa
 	return CRational(resultNumerator, resultDenominator);
 }
 
+CRational const operator *(CRational const& rational1, CRational const& rational2)
+{
+	int newNum = rational1.GetNumerator() * rational2.GetNumerator();
+	int newDen = rational1.GetDenominator() * rational2.GetDenominator();
 
+	return CRational(newNum, newDen);
+}
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -140,7 +146,14 @@ CRational const operator/(CRational const & rational1, CRational const & rationa
 //////////////////////////////////////////////////////////////////////////
 // TODO: 9. Реализовать оператор *=
 //////////////////////////////////////////////////////////////////////////
+CRational & CRational::operator *=(CRational const & number)
+{
+	m_numerator *= number.GetNumerator();
+	m_denominator *= number.GetDenominator();
+	Normalize();
 
+	return *this;
+}
 
 
 
@@ -160,7 +173,16 @@ CRational & CRational::operator/=(CRational const & rational)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 11. Реализовать операторы == и !=
 //////////////////////////////////////////////////////////////////////////
+bool operator == (CRational const & rational1, CRational const & rational2)
+{
+	return (rational1.GetNumerator() == rational2.GetNumerator()) 
+		&& (rational1.GetDenominator() == rational2.GetDenominator());
+}
 
+bool operator != (CRational const & rational1, CRational const & rational2)
+{
+	return !(rational1 == rational2);
+}
 
 
 

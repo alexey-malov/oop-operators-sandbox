@@ -198,9 +198,13 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 //	(7*2) / 3     = (14/3)
 //////////////////////////////////////////////////////////////////////////
 
-
-
-
+	BOOST_AUTO_TEST_CASE(has_binary_multiply)
+	{
+		VerifyRational(CRational(1, 2) * CRational(2, 3), 1, 3);
+		VerifyRational(CRational(1, 2) * CRational(-3), -3, 2);
+		VerifyRational(CRational(7) * CRational(1, 21), 1, 3);
+		VerifyRational(CRational(0) * CRational(-10, 15), 0, 1);
+	}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 8. Реализовать оператор /
@@ -230,7 +234,18 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 //	(1/2) *= (2/3) → (1/3)
 //	(1/2) *= 3     → (3/2)
 //////////////////////////////////////////////////////////////////////////
-
+BOOST_AUTO_TEST_CASE(operator_multiply_equals)
+{
+	CRational r1_2(1, 2);
+	CRational const r2_3(2, 3);
+	VerifyRational(r1_2 *= r2_3, 1, 3);
+	r1_2 = CRational(1, 2);
+	VerifyRational(r1_2 *= 3, 3, 2);
+	r1_2 = CRational(1, 2);
+	VerifyRational(r1_2 *= 0, 0, 1);
+	r1_2 = CRational(1, 2);
+	VerifyRational(r1_2 *= -2, -1, 1);
+}
 
 
 
@@ -263,7 +278,15 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 //	(1/2) != 7     → true
 //	3 != (2/3)     → true
 //////////////////////////////////////////////////////////////////////////
-
+	BOOST_AUTO_TEST_CASE(has_equal_and_not_equal_operators)
+	{
+		BOOST_CHECK(CRational(1, 2) == CRational(1, 2));
+		BOOST_CHECK(CRational(4, 1) == 4);
+		BOOST_CHECK(3 == CRational(3, 1));
+		BOOST_CHECK(CRational(1, 2) != CRational(2, 3));
+		BOOST_CHECK(CRational(1, 2) != 7);
+		BOOST_CHECK(3 != CRational(2, 3));
+	}
 
 
 

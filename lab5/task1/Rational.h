@@ -125,7 +125,7 @@ public:
 	//	(1/2) *= (2/3) → (1/3)
 	//	(1/2) *= 3     → (3/2)
 	//////////////////////////////////////////////////////////////////////////
-
+	CRational & operator *=(CRational const & number);
 
 
 
@@ -195,11 +195,14 @@ private:
 
 // Вычисляет наибольший общий знаменатель чисел a и b
 unsigned GCD(unsigned a, unsigned b);
-
 CRational const operator+(CRational const & rational1, CRational const & rational2);
 
 CRational const operator/(CRational const & rational1, CRational const & rational2);
 
 const CRational operator -(CRational const & number1, CRational const & number2);
 
+CRational const operator *(CRational const& rational1, CRational const& rational2);
+bool operator == (CRational const & rational1, CRational const & rational2);
+
+bool operator != (CRational const & rational1, CRational const & rational2);
 std::ostream & operator<<(std::ostream & stream, CRational const & rational);
