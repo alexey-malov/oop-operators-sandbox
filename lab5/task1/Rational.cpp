@@ -55,6 +55,17 @@ double CRational::ToDouble() const
 	return (static_cast<double>(m_numerator) / m_denominator);
 }
 
+std::pair<int, CRational> CRational::ToCompoundFraction() const
+{
+    int integerPart = m_numerator / m_denominator;
+
+    int numarator = (integerPart != 0) ? std::abs(m_numerator) : m_numerator;
+    int fractionPartNumerator = numarator % m_denominator;
+    CRational fractionPart = CRational(fractionPartNumerator, m_denominator);
+
+    return std::pair<int, CRational>(integerPart, fractionPart);
+}
+
 CRational const CRational::operator-() const
 {
 	return CRational(-m_numerator, m_denominator);

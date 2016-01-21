@@ -62,14 +62,43 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 		BOOST_CHECK_THROW(CRational(1, 0), std::invalid_argument);
 	}
 
-	BOOST_AUTO_TEST_CASE(can_be_converted_to_double)
-	{
-		const double epsilon = 1e-5;
-		BOOST_CHECK_CLOSE_FRACTION(CRational(3, 5).ToDouble(), 0.6, epsilon);
-		BOOST_CHECK_CLOSE_FRACTION(CRational(3, -5).ToDouble(), -0.6, epsilon);
-		BOOST_CHECK_CLOSE_FRACTION(CRational(-3, 5).ToDouble(), -0.6, epsilon);
-		BOOST_CHECK_CLOSE_FRACTION(CRational(1, 3).ToDouble(), 0.3333333, epsilon);
-	}
+    BOOST_AUTO_TEST_CASE(can_be_converted_to_double)
+    {
+        const double epsilon = 1e-5;
+        BOOST_CHECK_CLOSE_FRACTION(CRational(3, 5).ToDouble(), 0.6, epsilon);
+        BOOST_CHECK_CLOSE_FRACTION(CRational(3, -5).ToDouble(), -0.6, epsilon);
+        BOOST_CHECK_CLOSE_FRACTION(CRational(-3, 5).ToDouble(), -0.6, epsilon);
+        BOOST_CHECK_CLOSE_FRACTION(CRational(1, 3).ToDouble(), 0.3333333, epsilon);
+    }
+
+    BOOST_AUTO_TEST_CASE(can_be_converted_to_compount_fraction)
+    {
+        CRational rational1 = CRational(10, 3);
+        auto compound1 = rational1.ToCompoundFraction();
+        BOOST_CHECK(compound1.first == 3);
+        VerifyRational(compound1.second, 1, 3);
+
+        CRational rational2 = CRational(1, 3);
+        auto compound2 = rational2.ToCompoundFraction();
+        BOOST_CHECK(compound2.first == 0);
+        VerifyRational(compound2.second, 1, 3);
+
+        CRational rational3 = CRational();
+        auto compound3 = rational3.ToCompoundFraction();
+        BOOST_CHECK(compound3.first == 0);
+        VerifyRational(compound3.second, 0, 1);
+
+        CRational rational4 = CRational(-10, 3);
+        auto compound4 = rational4.ToCompoundFraction();
+        BOOST_CHECK(compound4.first == -3);
+        VerifyRational(compound4.second, 1, 3);
+
+        //
+        CRational rational5 = CRational(-1, 3);
+        auto compound5 = rational5.ToCompoundFraction();
+        BOOST_CHECK(compound5.first == 0);
+        VerifyRational(compound5.second, -1, 3);
+    }
 
 	BOOST_AUTO_TEST_CASE(has_unary_subtraction_operator)
 	{
