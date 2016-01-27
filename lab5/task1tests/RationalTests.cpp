@@ -62,46 +62,45 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 		BOOST_CHECK_THROW(CRational(1, 0), std::invalid_argument);
 	}
 
+    BOOST_AUTO_TEST_CASE(can_be_converted_to_double)
+    {
+        const double epsilon = 1e-5;
+        BOOST_CHECK_CLOSE_FRACTION(CRational(3, 5).ToDouble(), 0.6, epsilon);
+        BOOST_CHECK_CLOSE_FRACTION(CRational(3, -5).ToDouble(), -0.6, epsilon);
+        BOOST_CHECK_CLOSE_FRACTION(CRational(-3, 5).ToDouble(), -0.6, epsilon);
+        BOOST_CHECK_CLOSE_FRACTION(CRational(1, 3).ToDouble(), 0.3333333, epsilon);
+    }
 
+    BOOST_AUTO_TEST_CASE(can_be_converted_to_compount_fraction)
+    {
+        CRational rational1 = CRational(10, 3);
+        auto compound1 = rational1.ToCompoundFraction();
+        BOOST_CHECK(compound1.first == 3);
+        VerifyRational(compound1.second, 1, 3);
 
+        CRational rational2 = CRational(1, 3);
+        auto compound2 = rational2.ToCompoundFraction();
+        BOOST_CHECK(compound2.first == 0);
+        VerifyRational(compound2.second, 1, 3);
 
-//////////////////////////////////////////////////////////////////////////
-// TODO: 1. Реализовать метод ToDouble() согласно заданию
-// Возвращает отношение числителя и знаменателя в виде числа double
-// Пример использования:
-//	CRational r(3, 5)
-//	cout << r.ToDouble(); // Должно вывести 0.6
-//////////////////////////////////////////////////////////////////////////
-	BOOST_AUTO_TEST_CASE(can_be_converted_to_double)
-	{
-		const double epsilon = 1e-5;
-		BOOST_CHECK_CLOSE_FRACTION(CRational(3, 5).ToDouble(), 0.6, epsilon);
-		BOOST_CHECK_CLOSE_FRACTION(CRational(3, -5).ToDouble(), -0.6, epsilon);
-		BOOST_CHECK_CLOSE_FRACTION(CRational(-3, 5).ToDouble(), -0.6, epsilon);
-		BOOST_CHECK_CLOSE_FRACTION(CRational(1, 3).ToDouble(), 0.3333333, epsilon);
-	}
+        CRational rational3 = CRational();
+        auto compound3 = rational3.ToCompoundFraction();
+        BOOST_CHECK(compound3.first == 0);
+        VerifyRational(compound3.second, 0, 1);
 
+        CRational rational4 = CRational(-10, 3);
+        auto compound4 = rational4.ToCompoundFraction();
+        BOOST_CHECK(compound4.first == -3);
+        VerifyRational(compound4.second, 1, 3);
 
+        //
+        CRational rational5 = CRational(-1, 3);
+        auto compound5 = rational5.ToCompoundFraction();
+        BOOST_CHECK(compound5.first == 0);
+        VerifyRational(compound5.second, -1, 3);
+    }
 
-//////////////////////////////////////////////////////////////////////////
-// TODO: 2. Реализовать унарный + и унарный -
-// Указание: см. материалы к лекции
-// Пример использования:
-//	const CRational r1(3, 5);
-//	CRational r2 = -r1; // r2 должно стать -3/5
-//	assert(r2.GetNumerator(), -3);
-//	assert(r2.GetDenominator(), 5);
-//	CRational r3 = +r2; // r3 также равно -3/5
-//	assert(r3.GetNumerator(), -3);
-//	assert(r3.GetDenominator(), 5);
-// Унарный минус возвращает раицональное число без знака
-// Унарный плюс возвращает рациональное число, равное текущему
-// Реализация не должна допускать операции вроде:
-//  -someRational = someOtherRational;
-//	+someRational = someOtherRational;
-//////////////////////////////////////////////////////////////////////////
-
-	BOOST_AUTO_TEST_CASE(has_unary_minus)
+	BOOST_AUTO_TEST_CASE(has_unary_subtraction_operator)
 	{
 		VerifyRational(-CRational(5, 7), -5, 7);
 		VerifyRational(-CRational(20, 25), -4, 5);
@@ -110,7 +109,7 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 		VerifyRational(-CRational(0, 7), 0, 1);
 	}
 
-	BOOST_AUTO_TEST_CASE(has_unary_plus)
+	BOOST_AUTO_TEST_CASE(has_unary_addition_operator)
 	{
 		VerifyRational(+CRational(8, 15), 8, 15);
 		VerifyRational(+CRational(10, 15), 2, 3);
@@ -119,86 +118,42 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 		VerifyRational(+CRational(0, 25), 0, 1);
 	}
 
-//////////////////////////////////////////////////////////////////////////
-// TODO: 3. Реализовать бинарный +
-// Возвращает результат сложения двух рациональных чисел, 
-//	рационального числа с целым, целого числа с рациональным.
-//	(1/2) + (1/6) = (2/3)
-//	(1/2) + 1     = (3/2)
-//	1 + (1/2)     = (3/2)
-//////////////////////////////////////////////////////////////////////////
-	BOOST_AUTO_TEST_CASE(has_binary_addition_operation)
+	BOOST_AUTO_TEST_CASE(has_addition_operator)
 	{
 		VerifyRational(CRational(1, 2) + CRational(1, 6), 2, 3);
 		VerifyRational(CRational(1, 2) + 1, 3, 2);
 		VerifyRational(1 + CRational(1, 2), 3, 2);
 		VerifyRational(CRational(1, 2) + CRational(1, 2), 1, 1);
+
+        VerifyRational(CRational(1, 2) + CRational(), 1, 2);
+        VerifyRational(CRational(1, 2) + 0, 1, 2);
+        VerifyRational(0 + CRational(1, 2), 1, 2);
 	}
 
-	BOOST_AUTO_TEST_CASE(does_not_changed_when_zero_is_added)
-	{
-		VerifyRational(CRational(1, 2) + CRational(), 1, 2);
-		VerifyRational(CRational(1, 2) + 0, 1, 2);
-		VerifyRational(0 + CRational(1, 2), 1, 2);
-	}
+    BOOST_AUTO_TEST_CASE(has_subtraction_operator)
+    {
+	    VerifyRational(CRational(1, 2) - CRational(1, 6), 1, 3);
+	    VerifyRational(CRational(1, 2) - 1, -1, 2);
+	    VerifyRational(1 - CRational(1, 2), 1, 2);
+	    VerifyRational(0 - CRational(1, 2), -1, 2);
+	    VerifyRational(CRational(1, 6) - 0, 1, 6);
+    }
 
-
-
-//////////////////////////////////////////////////////////////////////////
-// TODO: 4. Реализовать бинарный -
-// Возвращает разность двух рациональных чисел, 
-//	рационального числа и целого, либо целого числа и рационального:
-//	(1/2) - (1/6) = (1/3)
-//	(1/2) - 1     = (-1/2)
-//	1 - (1/2)     = (1/2)
-//////////////////////////////////////////////////////////////////////////
-BOOST_AUTO_TEST_CASE(operator_binary_minus)
-{
-	CRational const r1_2(1, 2);
-	CRational const r1_6(1, 6);
-	VerifyRational(r1_2 - r1_6, 1, 3);
-	VerifyRational(r1_2 - 1, -1, 2);
-	VerifyRational(1 - r1_2, 1, 2);
-	VerifyRational(0 - r1_2, -1, 2);
-	VerifyRational(r1_6 - 0, 1, 6);
-}
-
-
-//////////////////////////////////////////////////////////////////////////
-// TODO: 5. Реализовать оператор +=
-// Выполняет увеличение рационального числа на величину второго рационального,
-//	либо целого числа:
-//	(1/2) += (1/6)  → (2/3)
-//	(1/2) += 1      → (3/2)
-//////////////////////////////////////////////////////////////////////////
-	BOOST_AUTO_TEST_CASE(has_adding_assignment_operator)
+	BOOST_AUTO_TEST_CASE(has_assignment_with_addition_operator)
 	{
 		VerifyRational((CRational(1, 2) += CRational(1, 6)), 2, 3);
 		VerifyRational((CRational(1, 2) += 1), 3, 2);
 		VerifyRational((CRational(8, -16) += CRational(1, 6)), -1, 3);
 	}
 
+    BOOST_AUTO_TEST_CASE(has_assignment_with_substraction_operator)
+    {
+        VerifyRational((CRational(1, 2) -= CRational(1, 6)), 1, 3);
+        VerifyRational((CRational(1, 2) -= 1), -1, 2);
+        VerifyRational((CRational(-8, 16) -= CRational(1, 2)), -1, 1);
+    }
 
-//////////////////////////////////////////////////////////////////////////
-// TODO: 6. Реализовать оператор -=
-// Выполняет уменьшение рационального числа на величину второго рационального либо целого числа :
-// (1/2) -= (1/6)  → (1/3)
-// (1/2) -= 1      → (-1/2)
-//////////////////////////////////////////////////////////////////////////
-
-
-
-
-//////////////////////////////////////////////////////////////////////////
-// TODO: 7. Реализовать оператор *
-// Возвращает результат произведения рациональных чисел, 
-//	рационального и целого, либо целого и рационального :
-//	(1/2) * (2/3) = (1/3)
-//	(1/2) * (-3)  = (-3/2)
-//	(7*2) / 3     = (14/3)
-//////////////////////////////////////////////////////////////////////////
-
-	BOOST_AUTO_TEST_CASE(has_binary_multiply)
+	BOOST_AUTO_TEST_CASE(has_multiplication_operator)
 	{
 		VerifyRational(CRational(1, 2) * CRational(2, 3), 1, 3);
 		VerifyRational(CRational(1, 2) * CRational(-3), -3, 2);
@@ -206,15 +161,7 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 		VerifyRational(CRational(0) * CRational(-10, 15), 0, 1);
 	}
 
-//////////////////////////////////////////////////////////////////////////
-// TODO: 8. Реализовать оператор /
-// Возвращает частное двух рациональных чисел, 
-//	рационального и целого, целого и рационального :
-//	(1/2) ⁄ (2/3) = (3/4)
-//	(1/2) ⁄ 5     = (1/10)
-//	7 ⁄ (2/3)     = (21/2)
-//////////////////////////////////////////////////////////////////////////
-	BOOST_AUTO_TEST_CASE(has_division_operation)
+	BOOST_AUTO_TEST_CASE(has_division_operator)
 	{
 		VerifyRational(CRational(1, 2) / CRational(2, 3), 3, 4);
 		VerifyRational(CRational(1, 2) / 5, 1, 10);
@@ -224,40 +171,20 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 		VerifyRational(1 / CRational(1, 2), 2, 1);
 	}
 
+    BOOST_AUTO_TEST_CASE(has_assignment_with_multiplication_operator)
+    {
+	    CRational r1_2(1, 2);
+	    CRational const r2_3(2, 3);
+	    VerifyRational(r1_2 *= r2_3, 1, 3);
+	    r1_2 = CRational(1, 2);
+	    VerifyRational(r1_2 *= 3, 3, 2);
+	    r1_2 = CRational(1, 2);
+	    VerifyRational(r1_2 *= 0, 0, 1);
+	    r1_2 = CRational(1, 2);
+	    VerifyRational(r1_2 *= -2, -1, 1);
+    }
 
-
-
-//////////////////////////////////////////////////////////////////////////
-// TODO: 9. Реализовать оператор *=
-// Умножает значение первого рационального числа на другое рациональное, 
-//	либо целое:
-//	(1/2) *= (2/3) → (1/3)
-//	(1/2) *= 3     → (3/2)
-//////////////////////////////////////////////////////////////////////////
-BOOST_AUTO_TEST_CASE(operator_multiply_equals)
-{
-	CRational r1_2(1, 2);
-	CRational const r2_3(2, 3);
-	VerifyRational(r1_2 *= r2_3, 1, 3);
-	r1_2 = CRational(1, 2);
-	VerifyRational(r1_2 *= 3, 3, 2);
-	r1_2 = CRational(1, 2);
-	VerifyRational(r1_2 *= 0, 0, 1);
-	r1_2 = CRational(1, 2);
-	VerifyRational(r1_2 *= -2, -1, 1);
-}
-
-
-
-
-//////////////////////////////////////////////////////////////////////////
-// TODO: 10. Реализовать оператор /=
-// Делит первое рациональное число на другое рациональное, 
-//	либо целое:
-//	(1/2) /= (2/3) → (3/4)
-//	(1/2) /= 3     → (1/6)
-//////////////////////////////////////////////////////////////////////////
-	BOOST_AUTO_TEST_CASE(has_assignment_with_division_operation)
+	BOOST_AUTO_TEST_CASE(has_assignment_with_division_operator)
 	{
 		VerifyRational(CRational(1, 2) /= CRational(2, 3), 3, 4);
 		VerifyRational(CRational(1, 2) /= 3, 1, 6);
@@ -265,19 +192,6 @@ BOOST_AUTO_TEST_CASE(operator_multiply_equals)
 		VerifyRational(CRational(1, 2) /= 1, 1, 2);
 	}
 
-
-
-//////////////////////////////////////////////////////////////////////////
-// TODO: 11. Реализовать операторы == и !=
-// Проверяют равенство (и неравенство) двух рациональных чисел, 
-//	целого и рационального, рационального и целого:
-//	(1/2) == (1/2) → true
-//	(4/1) == 4     → true
-//	3 == (3/1)     → true
-//	(1/2) != (2/3) → true
-//	(1/2) != 7     → true
-//	3 != (2/3)     → true
-//////////////////////////////////////////////////////////////////////////
 	BOOST_AUTO_TEST_CASE(has_equal_and_not_equal_operators)
 	{
 		BOOST_CHECK(CRational(1, 2) == CRational(1, 2));
@@ -288,38 +202,30 @@ BOOST_AUTO_TEST_CASE(operator_multiply_equals)
 		BOOST_CHECK(3 != CRational(2, 3));
 	}
 
+    BOOST_AUTO_TEST_CASE(has_other_logical_operators)
+    {
+        BOOST_CHECK(CRational(1, 2) >= CRational(1, 3));
+        BOOST_CHECK(!(CRational(1, 2) <= CRational(1, 3)));
+        BOOST_CHECK(CRational(3, 1) > 2);
+        BOOST_CHECK(CRational(1, 2) < 7);
+        BOOST_CHECK(3 <= CRational(7, 2));
+        BOOST_CHECK(!(3 >= CRational(8, 2)));
+    }
 
+    BOOST_AUTO_TEST_CASE(can_write_into_output_stream)
+	{
+		std::ostringstream outstream = std::ostringstream();
+		outstream << CRational(7, 15);
+		BOOST_CHECK_EQUAL(outstream.str(), "7/15");
+	}
 
-//////////////////////////////////////////////////////////////////////////
-// TODO: 12. Реализовать операторы <, >, <=, >=
-// Сравнивают два рациональных числа, рациональное с целым, 
-//	целое с рациональным:
-//	(1/2) >= (1/3) → true
-//	(1/2) <= (1/3) → false
-//	(3/1) > 2      → true
-//	(1/2) < 7      → true
-//	3 <= (7/2)     → true
-//	3 >= (8/2)     → false
-//////////////////////////////////////////////////////////////////////////
-
-
-
-
-//////////////////////////////////////////////////////////////////////////
-// TODO: 13. Реализовать оператор вывода рационального числа в выходной поток 
-//	std::ostream в формате <числитель>/<знаменатель>, 
-//	например: 7/15
-//////////////////////////////////////////////////////////////////////////
-
-
-
-
-//////////////////////////////////////////////////////////////////////////
-// TODO: 14. Реализовать оператор ввода рационального числа из входного потока 
-//	std::istream в формате <числитель>/<знаменатель>, 
-//	например: 7/15
-//////////////////////////////////////////////////////////////////////////
-
+    BOOST_AUTO_TEST_CASE(can_read_from_input_stream)
+    {
+        std::istringstream instream = std::istringstream("7/15");
+        CRational rational;
+        instream >> rational;
+        VerifyRational(rational, 7, 15);
+    }
 
 
 BOOST_AUTO_TEST_SUITE_END()
