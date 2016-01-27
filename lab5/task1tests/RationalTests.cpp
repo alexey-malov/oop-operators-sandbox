@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "../task1/Rational.h"
+#include <iostream>
 
 BOOST_AUTO_TEST_CASE(Test_Greates_Common_Denominator)
 {
@@ -319,7 +320,27 @@ BOOST_AUTO_TEST_CASE(operator_multiply_equals)
 //	std::istream в формате <числитель>/<знаменатель>, 
 //	например: 7/15
 //////////////////////////////////////////////////////////////////////////
+	BOOST_AUTO_TEST_CASE(can_be_entered_with_input_stream)
+	{
+		CRational rational;		
 
+		std::istringstream normal_number("7/15");
+		normal_number >> rational;
+		VerifyRational(rational, 7, 15);
+
+		std::istringstream negative_number("-5/13");
+		negative_number >> rational;
+		VerifyRational(rational, -5, 13);
+
+		std::istringstream double_negative_number("-4/-27");
+		double_negative_number >> rational;
+		VerifyRational(rational, 4, 27);
+
+		// тест для проверки некорректных данных - 
+		// не проходит при неправильном синтаксисе входной строки
+		//std::istringstream wrong_number("25%12");
+		//wrong_number >> rational;
+	}
 
 
 BOOST_AUTO_TEST_SUITE_END()

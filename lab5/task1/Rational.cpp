@@ -204,5 +204,20 @@ bool operator != (CRational const & rational1, CRational const & rational2)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 14. Реализовать оператор ввода рационального числа из входного потока 
 //////////////////////////////////////////////////////////////////////////
+std::istream & operator >>(std::istream & stream, CRational & rational)
+{
+	int numerator = 0;
+	int denominator = 1;
 
+	if (((stream >> numerator) && (stream.get() == '/') && (stream >> denominator)))
+	{
+		rational = CRational(numerator, denominator);
+	}
+	else
+	{
+		throw std::invalid_argument("Rational number is entered incorrectly.");
+	}
+
+	return stream;
+}
 
