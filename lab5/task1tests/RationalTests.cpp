@@ -280,7 +280,7 @@ BOOST_AUTO_TEST_CASE(operator_multiply_equals)
 //////////////////////////////////////////////////////////////////////////
 	BOOST_AUTO_TEST_CASE(has_equal_and_not_equal_operators)
 	{
-		BOOST_CHECK(CRational(1, 2) == CRational(1, 2));
+		BOOST_CHECK(CRational(1, 2) == CRational(1, 2)); //-V501
 		BOOST_CHECK(CRational(4, 1) == 4);
 		BOOST_CHECK(3 == CRational(3, 1));
 		BOOST_CHECK(CRational(1, 2) != CRational(2, 3));
@@ -324,16 +324,16 @@ BOOST_AUTO_TEST_CASE(operator_multiply_equals)
 		{
 			BOOST_CHECK(3 <= CRational(7, 2));
 			BOOST_CHECK(!(CRational(1, 2) <= CRational(1, 3)));
-			BOOST_CHECK(CRational(7, 2) <= CRational(7, 2));
+			BOOST_CHECK(CRational(7, 2) <= CRational(7, 2)); //-V501
 			BOOST_CHECK(CRational(1, 2) <= 1);
 			BOOST_CHECK(0 <= CRational(1, 2));
 		}
 
-		BOOST_AUTO_TEST_CASE(operator_greate_than_or_equal)
+		BOOST_AUTO_TEST_CASE(operator_greater_than_or_equal)
 		{
 			BOOST_CHECK(CRational(1, 2) >= CRational(1, 3));
 			BOOST_CHECK(!(3 >= CRational(8, 2)));
-			BOOST_CHECK(CRational(7, 2) >= CRational(7, 2));
+			BOOST_CHECK(CRational(7, 2) >= CRational(7, 2)); //-V501
 			BOOST_CHECK(CRational(1, 2) >= 0);
 			BOOST_CHECK(5 >= CRational(1, 2));
 		}
