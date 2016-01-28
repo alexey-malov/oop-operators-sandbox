@@ -324,22 +324,24 @@ BOOST_AUTO_TEST_CASE(operator_multiply_equals)
 	{
 		CRational rational;		
 
-		std::istringstream normal_number("7/15");
-		normal_number >> rational;
+		std::istringstream normalNumber("7/15");
+		normalNumber >> rational;
 		VerifyRational(rational, 7, 15);
 
-		std::istringstream negative_number("-5/13");
-		negative_number >> rational;
+		std::istringstream negativeNumber("-5/13");
+		negativeNumber >> rational;
 		VerifyRational(rational, -5, 13);
 
-		std::istringstream double_negative_number("-4/-27");
-		double_negative_number >> rational;
+		std::istringstream doubleNegativeNumber("-4/-27");
+		doubleNegativeNumber >> rational;
 		VerifyRational(rational, 4, 27);
 
-		// тест для проверки некорректных данных - 
-		// не проходит при неправильном синтаксисе входной строки
-		//std::istringstream wrong_number("25%12");
-		//wrong_number >> rational;
+		std::istringstream numberWithWrongSyntax("4 7");
+		numberWithWrongSyntax >> rational;
+		numberWithWrongSyntax.clear();
+		int denominatorLeft = 0;
+		numberWithWrongSyntax >> denominatorLeft;
+		BOOST_CHECK_EQUAL(denominatorLeft, 7);
 	}
 
 

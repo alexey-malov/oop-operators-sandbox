@@ -3,6 +3,7 @@
 #include <utility>
 #include <assert.h>
 #include <stdexcept>
+#include <iostream>
 
 
 CRational::CRational(int numerator, int denominator)
@@ -215,7 +216,7 @@ std::istream & operator >>(std::istream & stream, CRational & rational)
 	}
 	else
 	{
-		throw std::invalid_argument("Rational number is entered incorrectly.");
+		stream.setstate(std::ios_base::badbit | stream.rdstate());
 	}
 
 	return stream;
