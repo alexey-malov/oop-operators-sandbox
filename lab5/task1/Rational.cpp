@@ -114,7 +114,14 @@ CRational CRational::operator += (CRational const & rational)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 6. Реализовать оператор -=
 //////////////////////////////////////////////////////////////////////////
-
+CRational & CRational::operator -= (CRational const& subtrahend)
+{
+	m_numerator = m_numerator * subtrahend.GetDenominator()
+				- subtrahend.GetNumerator() * m_denominator;
+	m_denominator *= subtrahend.GetDenominator();
+	Normalize();
+	return *this;
+}
 
 
 
@@ -190,13 +197,34 @@ bool operator != (CRational const & rational1, CRational const & rational2)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 12. Реализовать операторы <, >, <=, >=
 //////////////////////////////////////////////////////////////////////////
+bool operator <(CRational const & rational1, CRational const & rational2)
+{
+	return (rational1.GetNumerator() * rational2.GetDenominator() < rational2.GetNumerator() * rational1.GetDenominator());
+}
 
+bool operator >(CRational const & rational1, CRational const & rational2)
+{
+	return (rational1.GetNumerator() * rational2.GetDenominator() > rational2.GetNumerator() * rational1.GetDenominator());
+}
 
+bool operator <=(CRational const & rational1, CRational const & rational2)
+{
+	return !(rational1 > rational2);
+}
 
+bool operator >=(CRational const & rational1, CRational const & rational2)
+{
+	return !(rational1 < rational2);
+}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 13. Реализовать оператор вывода рационального числа в выходной поток 
 //////////////////////////////////////////////////////////////////////////
+std::ostream & operator<<(std::ostream & stream, CRational const & rational)
+{
+	stream << rational.GetNumerator() << "/" << rational.GetDenominator();
+	return stream;
+}
 
 
 

@@ -186,9 +186,40 @@ BOOST_AUTO_TEST_CASE(operator_binary_minus)
 // (1/2) -= (1/6)  → (1/3)
 // (1/2) -= 1      → (-1/2)
 //////////////////////////////////////////////////////////////////////////
+	BOOST_AUTO_TEST_CASE(can_be_decreased_by_another_rational_with_same_denominator)
+	{
+		VerifyRational(CRational(2, 3) -= CRational(1, 3),  1, 3);
+		VerifyRational(CRational(1, 7) -= CRational(5, 7),  -4, 7);
+		VerifyRational(CRational(3, 8) -= CRational(-2, 8), 5, 8);
+	}
 
+	BOOST_AUTO_TEST_CASE(can_be_decreased_by_another_rational_with_coprime_denominator)
+	{
+		VerifyRational(CRational(1, 3) -= CRational(1, 2),   -1, 6);
+		VerifyRational(CRational(-3, 5) -= CRational(1, 9),  -32, 45);
+		VerifyRational(CRational(3, 14) -= CRational(2, 15), 17, 210);
+	}
 
+	BOOST_AUTO_TEST_CASE(can_be_decreased_by_another_rational_and_stays_normalized)
+	{
+		VerifyRational(CRational(1, 2) -= CRational(1, 6),  1, 3);
+		VerifyRational(CRational(2, 7) -= CRational(2, 7),  0, 1);
+		VerifyRational(CRational(12, 7) -= CRational(5, 7), 1, 1);
+	}
 
+	BOOST_AUTO_TEST_CASE(can_be_decreased_by_integer)
+	{
+		VerifyRational(CRational(1, 2) -= 1, -1, 2);
+		VerifyRational(CRational(2, 3) -= 2, -4, 3);
+		VerifyRational(CRational(3, 5) -= 0, 3, 5);
+	}
+
+	BOOST_AUTO_TEST_CASE(can_be_decreased_several_times_and_the_original_variable_is_updated)
+	{
+		CRational minued(1, 2);
+		(minued -= CRational(1, 6)) -= CRational(5, 7);
+		VerifyRational(minued, -8, 21);
+	}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 7. Реализовать оператор *
@@ -281,7 +312,7 @@ BOOST_AUTO_TEST_CASE(operator_multiply_equals)
 //////////////////////////////////////////////////////////////////////////
 	BOOST_AUTO_TEST_CASE(has_equal_and_not_equal_operators)
 	{
-		BOOST_CHECK(CRational(1, 2) == CRational(1, 2));
+		BOOST_CHECK(CRational(1, 2) == CRational(1, 2)); //-V501
 		BOOST_CHECK(CRational(4, 1) == 4);
 		BOOST_CHECK(3 == CRational(3, 1));
 		BOOST_CHECK(CRational(1, 2) != CRational(2, 3));
@@ -302,8 +333,43 @@ BOOST_AUTO_TEST_CASE(operator_multiply_equals)
 //	3 <= (7/2)     → true
 //	3 >= (8/2)     → false
 //////////////////////////////////////////////////////////////////////////
+	BOOST_AUTO_TEST_SUITE(has_comparison_operators)
+		BOOST_AUTO_TEST_CASE(operator_less_than)
+		{
+			BOOST_CHECK(CRational(1, 2) < 7);
+			BOOST_CHECK(CRational(-1, 2) < 0);
+			BOOST_CHECK(0 < CRational(1, 2));
+			BOOST_CHECK(CRational(-1, 2) < CRational(1, 2));
+			BOOST_CHECK(!(CRational(7, 2) < CRational(1, 2)));
+		}
 
+		BOOST_AUTO_TEST_CASE(operator_greater_than)
+		{
+			BOOST_CHECK(CRational(3, 1) > 2);
+			BOOST_CHECK(CRational(3, 1) > 0);
+			BOOST_CHECK(0 > CRational(-3, 5));
+			BOOST_CHECK(CRational(-1, 10) > CRational(-1, 2));
+			BOOST_CHECK(!(CRational(5, 3) > CRational(5, 2)));
+		}
 
+		BOOST_AUTO_TEST_CASE(operator_less_than_or_equal)
+		{
+			BOOST_CHECK(3 <= CRational(7, 2));
+			BOOST_CHECK(!(CRational(1, 2) <= CRational(1, 3)));
+			BOOST_CHECK(CRational(7, 2) <= CRational(7, 2)); //-V501
+			BOOST_CHECK(CRational(1, 2) <= 1);
+			BOOST_CHECK(0 <= CRational(1, 2));
+		}
+
+		BOOST_AUTO_TEST_CASE(operator_greater_than_or_equal)
+		{
+			BOOST_CHECK(CRational(1, 2) >= CRational(1, 3));
+			BOOST_CHECK(!(3 >= CRational(8, 2)));
+			BOOST_CHECK(CRational(7, 2) >= CRational(7, 2)); //-V501
+			BOOST_CHECK(CRational(1, 2) >= 0);
+			BOOST_CHECK(5 >= CRational(1, 2));
+		}
+	BOOST_AUTO_TEST_SUITE_END()
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -311,7 +377,12 @@ BOOST_AUTO_TEST_CASE(operator_multiply_equals)
 //	std::ostream в формате <числитель>/<знаменатель>, 
 //	например: 7/15
 //////////////////////////////////////////////////////////////////////////
-
+	BOOST_AUTO_TEST_CASE(can_write_into_output_stream)
+	{
+		std::ostringstream outstream;
+		outstream << CRational(7, 15);
+		BOOST_CHECK_EQUAL(outstream.str(), "7/15");
+	}
 
 
 
