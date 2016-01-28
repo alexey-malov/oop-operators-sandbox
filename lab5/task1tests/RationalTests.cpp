@@ -409,6 +409,7 @@ BOOST_AUTO_TEST_CASE(operator_multiply_equals)
 
 		std::istringstream numberWithWrongSyntax("4 7");
 		numberWithWrongSyntax >> rational;
+		BOOST_CHECK(numberWithWrongSyntax.bad());
 		numberWithWrongSyntax.clear();
 		int denominatorLeft = 0;
 		numberWithWrongSyntax >> denominatorLeft;
