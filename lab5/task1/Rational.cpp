@@ -113,7 +113,14 @@ CRational CRational::operator += (CRational const & rational)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 6. Реализовать оператор -=
 //////////////////////////////////////////////////////////////////////////
-
+CRational & CRational::operator -= (CRational const& subtrahend)
+{
+	m_numerator = m_numerator * subtrahend.GetDenominator()
+				- subtrahend.GetNumerator() * m_denominator;
+	m_denominator *= subtrahend.GetDenominator();
+	Normalize();
+	return *this;
+}
 
 
 
