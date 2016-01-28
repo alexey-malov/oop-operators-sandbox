@@ -3,6 +3,7 @@
 #include <utility>
 #include <assert.h>
 #include <stdexcept>
+#include <iostream>
 
 
 CRational::CRational(int numerator, int denominator)
@@ -232,5 +233,20 @@ std::ostream & operator<<(std::ostream & stream, CRational const & rational)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 14. Реализовать оператор ввода рационального числа из входного потока 
 //////////////////////////////////////////////////////////////////////////
+std::istream & operator >>(std::istream & stream, CRational & rational)
+{
+	int numerator = 0;
+	int denominator = 1;
 
+	if (((stream >> numerator) && (stream.get() == '/') && (stream >> denominator)))
+	{
+		rational = CRational(numerator, denominator);
+	}
+	else
+	{
+		stream.setstate(std::ios_base::badbit | stream.rdstate());
+	}
+
+	return stream;
+}
 

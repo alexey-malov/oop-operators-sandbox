@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <iostream>
 
 
 /*
@@ -211,6 +212,5 @@ bool operator >=(CRational const & rational1, CRational const & rational2);
 
 bool operator == (CRational const & rational1, CRational const & rational2);
 
-bool operator != (CRational const & rational1, CRational const & rational2);
-
 std::ostream & operator<<(std::ostream & stream, CRational const & rational);
+std::istream & operator >>(std::istream & stream, CRational & rational);
