@@ -376,7 +376,12 @@ BOOST_AUTO_TEST_CASE(operator_multiply_equals)
 //	std::ostream в формате <числитель>/<знаменатель>, 
 //	например: 7/15
 //////////////////////////////////////////////////////////////////////////
-
+	BOOST_AUTO_TEST_CASE(can_write_into_output_stream)
+	{
+		std::ostringstream outstream;
+		outstream << CRational(7, 15);
+		BOOST_CHECK_EQUAL(outstream.str(), "7/15");
+	}
 
 
 
