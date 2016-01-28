@@ -202,6 +202,15 @@ CRational const operator/(CRational const & rational1, CRational const & rationa
 const CRational operator -(CRational const & number1, CRational const & number2);
 
 CRational const operator *(CRational const& rational1, CRational const& rational2);
+
+bool operator <(CRational const & rational1, CRational const & rational2);
+
+bool operator >(CRational const & rational1, CRational const & rational2);
+
+bool operator <=(CRational const & rational1, CRational const & rational2);
+
+bool operator >=(CRational const & rational1, CRational const & rational2);
+
 bool operator == (CRational const & rational1, CRational const & rational2);
 
 bool operator != (CRational const & rational1, CRational const & rational2);
