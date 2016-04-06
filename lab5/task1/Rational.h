@@ -8,7 +8,8 @@ class CRational final
 {
 public:
 	CRational(int numerator = 0, int denominator = 1);
-
+	CRational const operator -() const;
+	CRational const operator +() const;
 	// Возвращает числитель
 	int GetNumerator() const;
 
