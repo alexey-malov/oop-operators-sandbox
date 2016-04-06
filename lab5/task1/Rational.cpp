@@ -74,7 +74,13 @@ unsigned GCD(unsigned a, unsigned b)
 // TODO: 5. Реализовать оператор +=
 //////////////////////////////////////////////////////////////////////////
 
-
+CRational & CRational::operator+=(CRational const & right)
+{
+	m_numerator = m_numerator * right.m_denominator + right.m_numerator * m_denominator;
+	m_denominator *= right.m_denominator;
+	Normalize();
+	return *this;
+}
 
 
 //////////////////////////////////////////////////////////////////////////
