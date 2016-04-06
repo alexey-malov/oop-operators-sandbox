@@ -125,8 +125,23 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) += 1      → (3/2)
 //////////////////////////////////////////////////////////////////////////
 
+BOOST_AUTO_TEST_CASE(can_increase_other_rational_number)
+{
+	CRational first(1, 2);
+	CRational second(1, 6);
 
+	first += second;
+	VerifyRational(first, 2, 3);
+}
 
+BOOST_AUTO_TEST_CASE(can_increase_other_integer_number)
+{
+	CRational first(1, 2);
+	CRational second(1, 1);
+
+	first += second;
+	VerifyRational(first, 3, 2);
+}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 6. Реализовать оператор -=
