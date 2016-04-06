@@ -90,7 +90,21 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	+someRational = someOtherRational;
 //////////////////////////////////////////////////////////////////////////
 
+	BOOST_AUTO_TEST_CASE(operator_minus_returns_negative_value_of_rational)
+	{
+		auto rational = CRational(3, 5);
+		CRational negativeRat = -rational;
+		BOOST_CHECK(negativeRat.GetNumerator() == -3);
+		BOOST_CHECK(negativeRat.GetDenominator() == 5);
+	}
 
+	BOOST_AUTO_TEST_CASE(operator_plus_returns_unchanged_value_of_rational)
+	{
+		auto rational = CRational(3, 5);
+		CRational unchangedRat = +rational;
+		BOOST_CHECK_EQUAL(rational.GetNumerator(), unchangedRat.GetNumerator());
+		BOOST_CHECK_EQUAL(rational.GetDenominator(), unchangedRat.GetDenominator());
+	}
 
 
 //////////////////////////////////////////////////////////////////////////

@@ -15,6 +15,16 @@ CRational::CRational(int numerator, int denominator)
 	Normalize();
 }
 
+CRational const CRational::operator-() const
+{
+	return CRational(-m_numerator, m_denominator);
+}
+
+CRational const CRational::operator+() const
+{
+	return *this;
+}
+
 int CRational::GetNumerator() const
 {
 	return m_numerator;
