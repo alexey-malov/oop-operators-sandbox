@@ -6,7 +6,7 @@
 
 BOOST_AUTO_TEST_CASE(Test_Greates_Common_Denominator)
 {
-	BOOST_CHECK_EQUAL(GCD(2, 3), 1u);
+	BOOST_CHECK_EQUAL(GCD(2, 6), 2u);
 	BOOST_CHECK_EQUAL(GCD(3, 2), 1u);
 	BOOST_CHECK_EQUAL(GCD(12, 8), 4u);
 	BOOST_CHECK_EQUAL(GCD(8, 12), 4u);
@@ -113,6 +113,13 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) - 1     = (-1/2)
 //	1 - (1/2)     = (1/2)
 //////////////////////////////////////////////////////////////////////////
+
+	BOOST_AUTO_TEST_CASE(work_with_the_binary_minus)
+	{
+		VerifyRational(CRational(1, 2) - CRational(1, 6), 1, 3);
+		VerifyRational(CRational(1, 2) - CRational(1), -1, 2);
+		VerifyRational(CRational(1) - CRational(1, 2), 1, 2);
+	}
 
 
 

@@ -66,8 +66,18 @@ unsigned GCD(unsigned a, unsigned b)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 4. Реализовать бинарный -
 //////////////////////////////////////////////////////////////////////////
-
-
+CRational const CRational::operator -(CRational const &rat) const
+{
+	auto copyRightVal = rat;
+	auto copyLeftVal = *this;//std::pair<int, int>(m_numerator, m_denominator);
+	copyRightVal.m_numerator *= m_denominator;
+	copyRightVal.m_denominator *= m_denominator;
+	copyLeftVal.m_numerator *= copyRightVal.m_denominator / copyLeftVal.m_denominator;
+	copyLeftVal.m_denominator *= copyRightVal.m_denominator / copyLeftVal.m_denominator;
+	copyLeftVal.m_numerator -= copyRightVal.m_numerator;
+	auto mostLarDiv = GCD(copyLeftVal.m_numerator, copyLeftVal.m_denominator);
+	return { copyLeftVal.m_numerator / int(mostLarDiv), copyLeftVal.m_denominator / int(mostLarDiv) };
+}
 
 
 //////////////////////////////////////////////////////////////////////////
