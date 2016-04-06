@@ -120,8 +120,12 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 		VerifyRational(CRational(-6, 8) - CRational(2, 8), -1, 1);
 		VerifyRational(CRational(-6, 8) - CRational(-2, 8), -1, 2);
 		VerifyRational(CRational(6, 8) - CRational(-2, 8), 1, 1);
-	}
 
+		VerifyRational(1 - CRational(1, 2), 1, 2);
+		VerifyRational(CRational(1, 2) - 1, -1, 2);
+
+
+	}
 
 
 //////////////////////////////////////////////////////////////////////////

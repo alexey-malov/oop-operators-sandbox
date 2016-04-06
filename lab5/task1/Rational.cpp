@@ -73,6 +73,19 @@ const CRational CRational::operator- (const CRational& secondVal) const {
 	return CRational(tempMinuend.m_numerator -= tempSub.m_numerator, tempMinuend.m_denominator);
 }
 
+CRational operator- (int firstVal, const CRational& secondVal)
+{
+	CRational tempMinued(firstVal);
+	return CRational(tempMinued.GetNumerator() * secondVal.GetDenominator() - secondVal.GetNumerator() * tempMinued.GetDenominator(), 
+				tempMinued.GetDenominator() * secondVal.GetDenominator());
+}
+
+CRational operator- (const CRational& firstVal , int secondVal)
+{
+	CRational tempMinued(secondVal);
+	return CRational(firstVal.GetNumerator() * tempMinued.GetDenominator() - tempMinued.GetNumerator() * firstVal.GetDenominator() ,
+		tempMinued.GetDenominator() * firstVal.GetDenominator());
+}
 
 
 //////////////////////////////////////////////////////////////////////////
