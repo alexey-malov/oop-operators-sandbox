@@ -25,6 +25,13 @@ int CRational::GetDenominator() const
 	return m_denominator;
 }
 
+CRational & CRational::operator/(CRational const & other)
+{
+	m_numerator *= other.GetDenominator();
+	m_denominator *= other.GetNumerator();
+	return *this;
+}
+
 void CRational::Normalize()
 {
 	const int gcd = GCD(abs(m_numerator), m_denominator);
