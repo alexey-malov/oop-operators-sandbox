@@ -119,7 +119,16 @@ CRational operator- (const CRational& firstVal , int secondVal)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 9. Реализовать оператор *=
 //////////////////////////////////////////////////////////////////////////
+const CRational CRational::operator*= (const CRational& secondVal) const
+{
+	return CRational(m_numerator * secondVal.m_numerator, m_denominator * secondVal.m_denominator);
+}
 
+const CRational CRational::operator*= (int const& secondVal) const
+{
+	return CRational(m_numerator * secondVal, m_denominator);
+
+}
 
 
 
