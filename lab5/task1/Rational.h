@@ -195,3 +195,11 @@ private:
 
 // Вычисляет наибольший общий знаменатель чисел a и b
 unsigned GCD(unsigned a, unsigned b);
+
+//#13
+
+inline std::ostream &operator <<(std::ostream &strm, CRational const &rationalNum)
+{
+	strm << rationalNum.GetNumerator() << "/" << rationalNum.GetDenominator();
+	return strm;
+}
