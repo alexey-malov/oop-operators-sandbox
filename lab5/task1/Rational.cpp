@@ -89,8 +89,14 @@ CRational & CRational::operator+=(CRational const & other)
 // TODO: 6. Реализовать оператор -=
 //////////////////////////////////////////////////////////////////////////
 
-
-
+CRational & CRational::operator-=(CRational const & rational)
+{
+	m_numerator *= rational.GetDenominator();
+	m_numerator -= m_denominator * rational.GetNumerator();
+	m_denominator *= rational.GetDenominator();
+	Normalize();
+	return *this;
+}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 7. Реализовать оператор *
@@ -145,5 +151,4 @@ CRational & CRational::operator+=(CRational const & other)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 14. Реализовать оператор ввода рационального числа из входного потока 
 //////////////////////////////////////////////////////////////////////////
-
 
