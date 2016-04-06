@@ -2,7 +2,6 @@
 #include "Rational.h"
 #include <utility>
 
-
 CRational::CRational(int numerator, int denominator)
 	: m_numerator(numerator)
 	, m_denominator(denominator)
@@ -42,6 +41,11 @@ unsigned GCD(unsigned a, unsigned b)
 	return (a != 0) ? a : 1;
 }
 
+
+double CRational::ToDouble()
+{
+	return double(m_numerator) / double(m_denominator);
+}
 //////////////////////////////////////////////////////////////////////////
 // TODO: 1. Реализовать метод ToDouble() согласно заданию
 //////////////////////////////////////////////////////////////////////////
