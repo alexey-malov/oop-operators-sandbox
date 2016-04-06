@@ -88,8 +88,10 @@ unsigned GCD(unsigned a, unsigned b)
 // TODO: 7. Реализовать оператор *
 //////////////////////////////////////////////////////////////////////////
 
-
-
+CRational const CRational::operator*(CRational const & rational2) const
+{
+	return CRational(m_numerator * rational2.m_numerator, m_denominator* rational2.m_denominator);
+}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 8. Реализовать оператор /
