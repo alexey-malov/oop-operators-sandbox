@@ -147,6 +147,15 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(7*2) / 3     = (14/3)
 //////////////////////////////////////////////////////////////////////////
 
+	BOOST_AUTO_TEST_CASE(multiplication)
+	{
+		CRational x(1, 2);
+		VerifyRational(x * 0, 0, 0);
+		VerifyRational(CRational(-2, 4) * CRational(-1, 3), 1, 6);
+		VerifyRational(CRational(1, 2) * CRational(2, 3), 1,3);
+		VerifyRational(CRational(1, 2) * -3, -3, 2);
+		VerifyRational(CRational(7 * 2, 3), 14, 3);
+	}
 
 
 

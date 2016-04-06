@@ -101,7 +101,7 @@ public:
 	//	(7*2) / 3     = (14/3)
 	//////////////////////////////////////////////////////////////////////////
 
-
+	CRational const CRational::operator * (CRational const & right) const;
 
 
 
