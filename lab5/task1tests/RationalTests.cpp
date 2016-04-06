@@ -103,8 +103,32 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //////////////////////////////////////////////////////////////////////////
 
 
+	struct binary_addition_
+	{
+		CRational rational = CRational(1, 2);
+	};
 
+	BOOST_FIXTURE_TEST_SUITE(binary_addition, binary_addition_)
+		
+		BOOST_AUTO_TEST_CASE(addition_of_two_floating_point_numbers)
+		{
+			auto answer = rational + CRational(5, 6);
+			VerifyRational(answer, 4, 3);
+		}
 
+		BOOST_AUTO_TEST_CASE(addition_of_fractional_and_integer)
+		{
+			auto answer = rational + 1;
+			VerifyRational(answer, 3, 2);
+		}
+
+		BOOST_AUTO_TEST_CASE(addition_of_whole_and_fractional_numbers)
+		{
+			auto answer = 1 + rational;
+			VerifyRational(answer, 3, 2);
+		}
+
+	BOOST_AUTO_TEST_SUITE_END()
 //////////////////////////////////////////////////////////////////////////
 // TODO: 4. Реализовать бинарный -
 // Возвращает разность двух рациональных чисел, 
