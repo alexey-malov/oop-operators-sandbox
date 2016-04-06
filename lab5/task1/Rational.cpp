@@ -66,7 +66,12 @@ unsigned GCD(unsigned a, unsigned b)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 4. Реализовать бинарный -
 //////////////////////////////////////////////////////////////////////////
+const CRational CRational::operator- (const CRational& secondVal) const {
 
+	CRational tempMinuend(m_numerator * secondVal.m_denominator, m_denominator * secondVal.m_denominator);
+	CRational tempSub(m_denominator * secondVal.m_numerator, m_denominator * secondVal.m_denominator);
+	return CRational(tempMinuend.m_numerator -= tempSub.m_numerator, tempMinuend.m_denominator);
+}
 
 
 
