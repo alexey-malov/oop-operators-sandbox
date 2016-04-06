@@ -44,8 +44,8 @@ public:
 	//	+someRational = someOtherRational;
 	//////////////////////////////////////////////////////////////////////////
 
-	CRational const operator + () const;
-	CRational const operator - () const;
+	/*CRational const operator + () const;
+	CRational const operator - () const;*/
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -127,7 +127,7 @@ public:
 	//	(1/2) *= 3     → (3/2)
 	//////////////////////////////////////////////////////////////////////////
 
-
+	CRational & operator *= (const CRational & num2);
 
 
 

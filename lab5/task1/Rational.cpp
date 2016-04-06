@@ -53,17 +53,17 @@ unsigned GCD(unsigned a, unsigned b)
 // TODO: 2. Реализовать унарный + и унарный -
 //////////////////////////////////////////////////////////////////////////
 
-CRational const CRational::operator+ () const
-{
-	return *this;
-}
-
-CRational const CRational::operator- ()	const
-{
-	return CRational((-1)*m_numerator, m_denominator);
-}
-
-
+//CRational const CRational::operator+ () const
+//{
+//	return *this;
+//}
+//
+//CRational const CRational::operator- ()	const
+//{
+//	return CRational((-1)*m_numerator, m_denominator);
+//}
+//
+//
 //////////////////////////////////////////////////////////////////////////
 // TODO: 3. Реализовать бинарный +
 //////////////////////////////////////////////////////////////////////////
@@ -110,7 +110,13 @@ CRational const CRational::operator- ()	const
 // TODO: 9. Реализовать оператор *=
 //////////////////////////////////////////////////////////////////////////
 
-
+CRational & CRational::operator *= (const CRational & num2)
+{
+	m_numerator *= num2.GetNumerator();
+	m_denominator *= num2.GetDenominator();
+	Normalize();
+	return *this;
+}
 
 
 //////////////////////////////////////////////////////////////////////////
