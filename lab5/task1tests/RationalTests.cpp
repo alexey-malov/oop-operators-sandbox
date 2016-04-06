@@ -31,6 +31,13 @@ void VerifyRational(const CRational & r, int expectedNumerator, int expectedDeno
 	BOOST_CHECK_EQUAL(r.GetDenominator(), expectedDenominator);
 }
 
+void VerifyOperatorMuliplication(const CRational & r, const CRational & r2, int expectedNumerator, int expectedDenominator)
+{
+	CRational r3 = r*r2;
+	BOOST_CHECK_EQUAL(r3.GetNumerator(), expectedNumerator);
+	BOOST_CHECK_EQUAL(r3.GetDenominator(), expectedDenominator);
+}
+
 BOOST_AUTO_TEST_SUITE(Rational_number)
 	BOOST_AUTO_TEST_CASE(is_0_by_default)
 	{
@@ -162,8 +169,14 @@ BOOST_AUTO_TEST_CASE(can_increase_other_integer_number)
 //	(7*2) / 3     = (14/3)
 //////////////////////////////////////////////////////////////////////////
 
-
-
+	BOOST_AUTO_TEST_CASE(can_multiply_rational_numbers)
+	{
+		VerifyOperatorMuliplication(CRational(1, 2), CRational(2, 4), 1, 4);
+		VerifyOperatorMuliplication(CRational(1, 2), 2, 1, 1);
+		VerifyOperatorMuliplication(2, CRational(1, 2), 1, 1);
+		VerifyOperatorMuliplication(0, CRational(1, 2), 0, 1);
+		VerifyOperatorMuliplication(-3, CRational(1, 2), -3, 2);
+	}
 
 
 //////////////////////////////////////////////////////////////////////////
