@@ -161,8 +161,32 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //////////////////////////////////////////////////////////////////////////
 
 
+BOOST_AUTO_TEST_CASE(can_divided_on_other_rational_number)
+{
+	CRational first(1, 2);
+	CRational second(2, 3);
 
+	first = first / second;
+	VerifyRational(first, 3, 4);
+}
 
+BOOST_AUTO_TEST_CASE(can_divided_on_other_integer_number)
+{
+	CRational first(1, 2);
+	CRational second(5, 1);
+
+	first = first / second;
+	VerifyRational(first, 1, 10);
+}
+
+BOOST_AUTO_TEST_CASE(can_integer_number_divided_on_rational)
+{
+	CRational first(7, 1);
+	CRational second(2, 3);
+
+	first = first / second;
+	VerifyRational(first, 21, 2);
+}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 9. Реализовать оператор *=
