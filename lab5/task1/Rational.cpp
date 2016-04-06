@@ -59,7 +59,16 @@ unsigned GCD(unsigned a, unsigned b)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 3. Реализовать бинарный +
 //////////////////////////////////////////////////////////////////////////
-
+const CRational CRational::operator+ (CRational const & number)
+{
+	unsigned genericDenominator = m_denominator * number.GetDenominator();
+	m_numerator *= (genericDenominator / m_denominator);
+	int numerator = number.GetNumerator() * (genericDenominator / number.GetDenominator());
+	m_numerator += numerator;
+	m_denominator = genericDenominator;
+	Normalize();
+	return *this;
+}
 
 
 
