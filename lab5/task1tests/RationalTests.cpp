@@ -111,12 +111,9 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 	{
 		CRational number1 = 1;
 		VerifyRational(CRational(1, 2) + number1, 3, 2);
-	}
-	BOOST_AUTO_TEST_CASE(is_normalized_after_addition)
-	{
-		CRational number1 = 1;
 		VerifyRational(number1 + CRational(1, 2), 3, 2);
 	}
+	
 
 
 
