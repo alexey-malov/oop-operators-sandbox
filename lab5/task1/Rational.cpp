@@ -132,10 +132,49 @@ CRational const CRational::operator -(CRational const &rat) const
 //////////////////////////////////////////////////////////////////////////
 // TODO: 12. Реализовать операторы <, >, <=, >=
 //////////////////////////////////////////////////////////////////////////
+bool const CRational::operator <(CRational const &rat) const
+{
+	auto copyRightVal = rat;
+	auto copyLeftVal = *this;//std::pair<int, int>(m_numerator, m_denominator);
+	copyRightVal.m_numerator *= m_denominator;
+	copyRightVal.m_denominator *= m_denominator;
+	copyLeftVal.m_numerator *= copyRightVal.m_denominator / copyLeftVal.m_denominator;
+	copyLeftVal.m_denominator *= copyRightVal.m_denominator / copyLeftVal.m_denominator;
+	return copyLeftVal.m_numerator < copyRightVal.m_numerator;
+}
 
+bool const CRational::operator >(CRational const &rat) const
+{
+	auto copyRightVal = rat;
+	auto copyLeftVal = *this;//std::pair<int, int>(m_numerator, m_denominator);
+	copyRightVal.m_numerator *= m_denominator;
+	copyRightVal.m_denominator *= m_denominator;
+	copyLeftVal.m_numerator *= copyRightVal.m_denominator / copyLeftVal.m_denominator;
+	copyLeftVal.m_denominator *= copyRightVal.m_denominator / copyLeftVal.m_denominator;
+	return copyLeftVal.m_numerator > copyRightVal.m_numerator;
+}
 
+bool const CRational::operator <=(CRational const &rat) const
+{
+	auto copyRightVal = rat;
+	auto copyLeftVal = *this;//std::pair<int, int>(m_numerator, m_denominator);
+	copyRightVal.m_numerator *= m_denominator;
+	copyRightVal.m_denominator *= m_denominator;
+	copyLeftVal.m_numerator *= copyRightVal.m_denominator / copyLeftVal.m_denominator;
+	copyLeftVal.m_denominator *= copyRightVal.m_denominator / copyLeftVal.m_denominator;
+	return copyLeftVal.m_numerator <= copyRightVal.m_numerator;
+}
 
-
+bool const CRational::operator >=(CRational const &rat) const
+{
+	auto copyRightVal = rat;
+	auto copyLeftVal = *this;//std::pair<int, int>(m_numerator, m_denominator);
+	copyRightVal.m_numerator *= m_denominator;
+	copyRightVal.m_denominator *= m_denominator;
+	copyLeftVal.m_numerator *= copyRightVal.m_denominator / copyLeftVal.m_denominator;
+	copyLeftVal.m_denominator *= copyRightVal.m_denominator / copyLeftVal.m_denominator;
+	return copyLeftVal.m_numerator >= copyRightVal.m_numerator;
+}
 //////////////////////////////////////////////////////////////////////////
 // TODO: 13. Реализовать оператор вывода рационального числа в выходной поток 
 //////////////////////////////////////////////////////////////////////////

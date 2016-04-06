@@ -220,7 +220,15 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	3 <= (7/2)     → true
 //	3 >= (8/2)     → false
 //////////////////////////////////////////////////////////////////////////
-
+BOOST_AUTO_TEST_CASE(compare)
+{
+	BOOST_CHECK(CRational(1, 2) >= CRational(1, 3));
+	BOOST_CHECK(!(CRational(1, 2) <= CRational(1, 3)));
+	BOOST_CHECK(CRational(3, 1) > CRational(2));
+	BOOST_CHECK(CRational(1, 2) < CRational(7));
+	BOOST_CHECK(CRational(3) <= CRational(7, 2));
+	BOOST_CHECK(!(CRational(1, 2) >= CRational(8, 2)));
+}
 
 
 
