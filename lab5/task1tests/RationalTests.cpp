@@ -135,7 +135,22 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 // (1/2) -= 1      → (-1/2)
 //////////////////////////////////////////////////////////////////////////
 
+	BOOST_AUTO_TEST_CASE(operator_minus_assignment_substract_from_rational)
+	{
+		CRational rat1(3, 5);
+		CRational rat2(-3, 7);
+		rat1 -= rat2;
+		BOOST_CHECK_EQUAL(rat1.GetNumerator(), 36);
+		BOOST_CHECK_EQUAL(rat1.GetDenominator(), 35);
+		BOOST_CHECK(rat1.GetNumerator() != -36);
+		BOOST_CHECK(rat1.GetDenominator() != 39);
+		rat1 = CRational(2, 3);
+		rat2 = CRational(3, 2);
+		rat1 -= rat2;
+		BOOST_CHECK_EQUAL(rat1.GetNumerator(), -5);
+		BOOST_CHECK_EQUAL(rat1.GetDenominator(), 6);
 
+	}
 
 
 //////////////////////////////////////////////////////////////////////////
