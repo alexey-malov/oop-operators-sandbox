@@ -1,12 +1,16 @@
 ﻿#include "stdafx.h"
 #include "Rational.h"
 #include <utility>
-
+#include <stdexcept> 
 
 CRational::CRational(int numerator, int denominator)
 	: m_numerator(numerator)
 	, m_denominator(denominator)
 {
+	if (denominator == 0)
+	{
+		throw std::invalid_argument("Denominator can't have zero value");
+	}
 	if (denominator < 0)
 	{
 		m_numerator = -m_numerator;
