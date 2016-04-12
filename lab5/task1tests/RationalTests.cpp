@@ -129,8 +129,15 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) += 1      → (3/2)
 //////////////////////////////////////////////////////////////////////////
 
-
-
+	BOOST_AUTO_TEST_CASE(has_adding_assigment_operator)
+	{
+		CRational lhs(2, 7);
+		VerifyRational(lhs += lhs, 4, 7);
+		BOOST_CHECK_EQUAL(&(lhs += CRational(1, 2)), &lhs);
+		VerifyRational(CRational(1, 2) += CRational(1, 6), 2, 3);
+		VerifyRational(CRational(1, 2) += 1, 3, 2);
+		VerifyRational(CRational(1, 2) += 0, 1, 2);
+	}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 6. Реализовать оператор -=
