@@ -1,6 +1,4 @@
 ﻿#pragma once
-
-
 /*
 Класс, моделирующий рациональное число
 */
@@ -44,8 +42,6 @@ public:
 	//  -someRational = someOtherRational;
 	//	+someRational = someOtherRational;
 	//////////////////////////////////////////////////////////////////////////
-
-
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -196,3 +192,8 @@ private:
 
 // Вычисляет наибольший общий знаменатель чисел a и b
 unsigned GCD(unsigned a, unsigned b);
+
+
+//#3
+
+CRational const operator +(CRational const &lhs, CRational const &rhs);

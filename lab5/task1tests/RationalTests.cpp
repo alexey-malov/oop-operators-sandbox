@@ -110,10 +110,21 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) + 1     = (3/2)
 //	1 + (1/2)     = (3/2)
 //////////////////////////////////////////////////////////////////////////
+	BOOST_AUTO_TEST_SUITE(with_binary_plus)
+		BOOST_AUTO_TEST_CASE(can_add_two_rationals)
+		{
+			VerifyRational(CRational(1, 2) + CRational(5, 6), 4, 3);
+		}
+		BOOST_AUTO_TEST_CASE(can_add_rational_and_integer)
+		{
+			VerifyRational(CRational(1, 2) + 1, 3, 2);
+		}
 
-
-
-
+		BOOST_AUTO_TEST_CASE(can_add_integer_and_rational)
+		{
+			VerifyRational(1 + CRational(1, 2), 3, 2);
+		}
+	BOOST_AUTO_TEST_SUITE_END()
 //////////////////////////////////////////////////////////////////////////
 // TODO: 4. Реализовать бинарный -
 // Возвращает разность двух рациональных чисел, 
