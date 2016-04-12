@@ -3,6 +3,9 @@
 
 #include "stdafx.h"
 #include "../task1/Rational.h"
+#include <boost/test/output_test_stream.hpp>
+
+using boost::test_tools::output_test_stream;
 
 BOOST_AUTO_TEST_CASE(Test_Greates_Common_Denominator)
 {
@@ -228,7 +231,27 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //////////////////////////////////////////////////////////////////////////
 
 
+struct rational_to_ostream_
+{
+	output_test_stream output;
+};
 
+BOOST_FIXTURE_TEST_SUITE(rational_to_ostream, rational_to_ostream_)
+
+BOOST_AUTO_TEST_CASE(rational_number_to_ostream)
+{
+	output << CRational(1, 2);
+	BOOST_CHECK(output.is_equal("1/2"));
+}
+
+BOOST_AUTO_TEST_CASE(whole_rational_number_to_ostream)
+{
+	output << CRational(3);
+	BOOST_CHECK(output.is_equal("3/1"));
+}
+
+
+BOOST_AUTO_TEST_SUITE_END()
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 14. Реализовать оператор ввода рационального числа из входного потока 
