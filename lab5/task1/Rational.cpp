@@ -51,6 +51,11 @@ unsigned GCD(unsigned a, unsigned b)
 // TODO: 1. Реализовать метод ToDouble() согласно заданию
 //////////////////////////////////////////////////////////////////////////
 
+double CRational::ToDouble()
+{
+	return double(m_numerator) / double(m_denominator);
+}
+
 
 
 
