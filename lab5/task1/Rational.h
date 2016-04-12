@@ -66,7 +66,9 @@ public:
 	//	(1/2) - (1/6) = (1/3)
 	//	(1/2) - 1     = (-1/2)
 	//	1 - (1/2)     = (1/2)
-	//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+	const CRational operator- (const CRational& secondVal) const;
 
 
 
@@ -195,3 +197,8 @@ private:
 
 // Вычисляет наибольший общий знаменатель чисел a и b
 unsigned GCD(unsigned a, unsigned b);
+
+CRational operator- (int firstVal, const CRational& secondVal);
+
+CRational operator- (const CRational& firstVal, int secondVal);
+
