@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 
 
 
-
+	
 //////////////////////////////////////////////////////////////////////////
 // TODO: 1. Реализовать метод ToDouble() согласно заданию
 // Возвращает отношение числителя и знаменателя в виде числа double
@@ -73,7 +73,12 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	cout << r.ToDouble(); // Должно вывести 0.6
 //////////////////////////////////////////////////////////////////////////
 
-
+	BOOST_AUTO_TEST_CASE(can_be_converted_to_double)
+	{
+		BOOST_CHECK_CLOSE(CRational(3, 5).ToDouble(), 0.6, DBL_EPSILON);
+		BOOST_CHECK_CLOSE(CRational(0).ToDouble(), 0.0, DBL_EPSILON);
+		BOOST_CHECK_CLOSE(CRational(-1, 3).ToDouble(), -1.0 / 3.0, DBL_EPSILON);
+	}
 
 
 //////////////////////////////////////////////////////////////////////////
