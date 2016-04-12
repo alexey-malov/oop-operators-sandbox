@@ -69,6 +69,12 @@ double CRational::ToDouble()
 //////////////////////////////////////////////////////////////////////////
 // TODO: 3. Реализовать бинарный +
 //////////////////////////////////////////////////////////////////////////
+CRational const operator+(CRational const &lhs, CRational const &rhs)
+{
+	return (CRational((lhs.GetNumerator() * rhs.GetDenominator()) + (rhs.GetNumerator() * lhs.GetDenominator()),
+		lhs.GetDenominator() * rhs.GetDenominator()));
+}
+
 
 
 
