@@ -1,6 +1,4 @@
 ﻿#pragma once
-
-
 /*
 Класс, моделирующий рациональное число
 */
@@ -43,8 +41,6 @@ public:
 	//  -someRational = someOtherRational;
 	//	+someRational = someOtherRational;
 	//////////////////////////////////////////////////////////////////////////
-
-
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -195,3 +191,12 @@ private:
 
 // Вычисляет наибольший общий знаменатель чисел a и b
 unsigned GCD(unsigned a, unsigned b);
+
+
+//#3
+
+inline CRational const operator +(CRational const &rational1, CRational const &rational2)
+{
+	return (CRational((rational1.GetNumerator() * rational2.GetDenominator()) + (rational2.GetNumerator() * rational1.GetDenominator()),
+		rational1.GetDenominator() * rational2.GetDenominator()));
+}
