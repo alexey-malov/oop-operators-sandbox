@@ -67,8 +67,7 @@ public:
 	//	(1/2) - 1     = (-1/2)
 	//	1 - (1/2)     = (1/2)
 	//////////////////////////////////////////////////////////////////////////
-
-
+	CRational const operator -(CRational const &rat) const;
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -167,8 +166,10 @@ public:
 	//	3 <= (7/2)     → true
 	//	3 >= (8/2)     → false
 	//////////////////////////////////////////////////////////////////////////
-
-
+	bool const operator <(CRational const &rat) const;
+	bool const operator >(CRational const &rat) const;
+	bool const operator <=(CRational const &rat) const;
+	bool const operator >=(CRational const &rat) const;
 
 
 	//////////////////////////////////////////////////////////////////////////

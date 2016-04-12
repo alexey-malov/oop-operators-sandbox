@@ -6,7 +6,7 @@
 
 BOOST_AUTO_TEST_CASE(Test_Greates_Common_Denominator)
 {
-	BOOST_CHECK_EQUAL(GCD(2, 3), 1u);
+	BOOST_CHECK_EQUAL(GCD(2, 6), 2u);
 	BOOST_CHECK_EQUAL(GCD(3, 2), 1u);
 	BOOST_CHECK_EQUAL(GCD(12, 8), 4u);
 	BOOST_CHECK_EQUAL(GCD(8, 12), 4u);
@@ -118,6 +118,13 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	1 - (1/2)     = (1/2)
 //////////////////////////////////////////////////////////////////////////
 
+	BOOST_AUTO_TEST_CASE(work_with_the_binary_minus)
+	{
+		VerifyRational(CRational(1, 2) - CRational(1, 6), 1, 3);
+		VerifyRational(CRational(1, 2) - CRational(1), -1, 2);
+		VerifyRational(CRational(1) - CRational(1, 2), 1, 2);
+	}
+
 
 
 
@@ -217,7 +224,15 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	3 <= (7/2)     → true
 //	3 >= (8/2)     → false
 //////////////////////////////////////////////////////////////////////////
-
+BOOST_AUTO_TEST_CASE(compare)
+{
+	BOOST_CHECK(CRational(1, 2) >= CRational(1, 3));
+	BOOST_CHECK(!(CRational(1, 2) <= CRational(1, 3)));
+	BOOST_CHECK(CRational(3, 1) > CRational(2));
+	BOOST_CHECK(CRational(1, 2) < CRational(7));
+	BOOST_CHECK(CRational(3) <= CRational(7, 2));
+	BOOST_CHECK(!(CRational(1, 2) >= CRational(8, 2)));
+}
 
 
 
