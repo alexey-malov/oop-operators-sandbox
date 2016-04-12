@@ -186,9 +186,22 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	7 ⁄ (2/3)     = (21/2)
 //////////////////////////////////////////////////////////////////////////
 
+	BOOST_AUTO_TEST_SUITE(with_division_operator)
 
-
-
+		BOOST_AUTO_TEST_CASE(can_divide_rational_number_by_rational_number)
+		{
+			VerifyRational(CRational(1, 2) / CRational(2, 3), 3, 4);
+		}
+		BOOST_AUTO_TEST_CASE(can_divide_rational_number_by_integer_number)
+		{
+			VerifyRational(CRational(3, 4) / 3, 1, 4);
+		}
+		BOOST_AUTO_TEST_CASE(can_divide_integer_number_by_rational_number)
+		{
+			auto answer = 3 / CRational(3, 4);
+			VerifyRational(answer, 4, 1);
+		}
+	BOOST_AUTO_TEST_SUITE_END()
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 9. Реализовать оператор *=

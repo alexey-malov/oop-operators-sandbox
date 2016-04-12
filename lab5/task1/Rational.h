@@ -197,3 +197,5 @@ unsigned GCD(unsigned a, unsigned b);
 //#3
 
 CRational const operator +(CRational const &lhs, CRational const &rhs);
+
+CRational const operator /(CRational const &rat1, CRational const &rat2);
