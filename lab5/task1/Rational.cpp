@@ -117,7 +117,10 @@ CRational & CRational::operator+=(CRational const & right)
 // TODO: 8. Реализовать оператор /
 //////////////////////////////////////////////////////////////////////////
 
-
+CRational const operator/(CRational const &lhs, CRational const &rhs)
+{
+	return { lhs.GetNumerator() * rhs.GetDenominator(), lhs.GetDenominator() * rhs.GetNumerator() };
+}
 
 
 //////////////////////////////////////////////////////////////////////////
