@@ -189,6 +189,28 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //////////////////////////////////////////////////////////////////////////
 
 
+struct binary_addition_
+ {
+	CRational rational = CRational(1, 2);
+};
+
+BOOST_FIXTURE_TEST_SUITE(binary_addition, binary_addition_)
+
+BOOST_AUTO_TEST_CASE(division_of_two_floating_point_numbers)
+ {
+	rational /= CRational(2, 3);
+	VerifyRational(rational, 3, 4);
+	}
+
+BOOST_AUTO_TEST_CASE(division_of_fractional_and_integer)
+ {
+	rational /= 3;
+	VerifyRational(rational, 1, 6);
+	}
+
+
+BOOST_AUTO_TEST_SUITE_END()
+
 
 
 //////////////////////////////////////////////////////////////////////////

@@ -138,8 +138,13 @@ public:
 	//	(1/2) /= 3     → (1/6)
 	//////////////////////////////////////////////////////////////////////////
 
-
-
+	 CRational &operator /= (CRational const &rat2)
+	{
+		m_numerator *= rat2.GetDenominator();
+		m_denominator *= rat2.GetNumerator();
+		return *this;
+	}
+	
 
 	//////////////////////////////////////////////////////////////////////////
 	// TODO: 11. Реализовать операторы == и !=
