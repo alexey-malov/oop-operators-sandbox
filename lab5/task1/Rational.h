@@ -195,3 +195,8 @@ private:
 
 // Вычисляет наибольший общий знаменатель чисел a и b
 unsigned GCD(unsigned a, unsigned b);
+
+inline CRational const operator /(CRational const &rat1, CRational const &rat2)
+{
+	return (CRational(rat1.GetNumerator() * rat2.GetDenominator(), rat1.GetDenominator() * rat2.GetNumerator()));
+}

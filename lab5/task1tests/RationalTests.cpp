@@ -166,6 +166,33 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 
 
 
+struct binary_addition_
+{
+	CRational rational = CRational(3, 4);
+};
+
+BOOST_FIXTURE_TEST_SUITE(binary_addition, binary_addition_)
+
+	BOOST_AUTO_TEST_CASE(division_of_two_floating_point_numbers)
+	 {
+		auto answer = rational / CRational(7, 3);
+		VerifyRational(answer, 9, 28);
+		}
+
+	BOOST_AUTO_TEST_CASE(division_of_fractional_and_integer)
+	 {
+		auto answer = rational / 3;
+		VerifyRational(answer, 1, 4);
+		}
+
+	BOOST_AUTO_TEST_CASE(division_of_whole_and_fractional_numbers)
+	 {
+		auto answer = 3 /  rational;
+		VerifyRational(answer, 4, 1);
+	}
+
+BOOST_AUTO_TEST_SUITE_END()
+
 
 
 //////////////////////////////////////////////////////////////////////////
