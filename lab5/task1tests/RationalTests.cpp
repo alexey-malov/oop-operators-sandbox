@@ -176,7 +176,12 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) *= 3     → (3/2)
 //////////////////////////////////////////////////////////////////////////
 
+BOOST_AUTO_TEST_CASE(multiply_CRational_on_value)
+{
+	VerifyRational(CRational(6, 8) *= CRational(2, 3), 1, 2);
+	VerifyRational(CRational(1, 2) *= 3, 3, 2);
 
+}
 
 
 
