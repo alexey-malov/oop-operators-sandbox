@@ -127,9 +127,7 @@ public:
 	//	(1/2) *= (2/3) → (1/3)
 	//	(1/2) *= 3     → (3/2)
 	//////////////////////////////////////////////////////////////////////////
-	const CRational operator*= (const CRational& secondVal) const;
 
-	const CRational operator*= (int const& secondVal) const;
 
 
 
