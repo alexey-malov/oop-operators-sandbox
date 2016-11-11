@@ -235,6 +235,29 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	std::istream в формате <числитель>/<знаменатель>, 
 //	например: 7/15
 //////////////////////////////////////////////////////////////////////////
+	BOOST_AUTO_TEST_CASE(can_be_read_from_istream)
+	{
+		{
+			std::istringstream input("7/15");
+			CRational rat;
+			input >> rat;
+			VerifyRational(rat, 7, 15);
+		}
+
+		{
+			std::istringstream input("-1/1");
+			CRational rat;
+			input >> rat;
+			VerifyRational(rat, -1, 1);
+		}
+
+		{
+			std::istringstream input("0");
+			CRational rat;
+			input >> rat;
+			VerifyRational(rat, 0, 1);
+		}
+	}
 
 
 
