@@ -238,7 +238,7 @@ std::istream & operator >> (std::istream & input, CRational & rat)
 {
 	int numerator = 0;
 	int denominator = 1;
-	if ((input >> numerator) && (static_cast<char>(input.get()) == '/') && (input >> denominator))
+	if ((input >> numerator) && (input.get() == '/') && (input >> denominator))
 	{
 		rat = CRational(numerator, denominator);
 	}
