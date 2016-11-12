@@ -292,7 +292,7 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //////////////////////////////////////////////////////////////////////////
 	BOOST_AUTO_TEST_SUITE(has_compare_operators)
 
-		BOOST_AUTO_TEST_CASE(equal_operator)
+		BOOST_AUTO_TEST_CASE(equal)
 		{
 			CRational rat(7, 4);
 			BOOST_CHECK(rat == rat);
@@ -309,7 +309,7 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 			BOOST_CHECK(!(CRational(1, 3) == CRational(1, 2)));
 		}
 
-		BOOST_AUTO_TEST_CASE(not_equal_operator)
+		BOOST_AUTO_TEST_CASE(not_equal)
 		{
 			CRational rat(4, 7);
 			BOOST_CHECK(!(rat != rat));
