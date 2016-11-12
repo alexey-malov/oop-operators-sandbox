@@ -1,5 +1,5 @@
 ﻿#pragma once
-
+#include <iostream>
 
 /*
 Класс, моделирующий рациональное число
@@ -215,3 +215,8 @@ const bool operator<(const CRational & lhs, const CRational & rhs);
 const bool operator>(const CRational & lhs, const CRational & rhs);
 const bool operator<=(const CRational & lhs, const CRational & rhs);
 const bool operator>=(const CRational & lhs, const CRational & rhs);
+
+const bool operator != (const CRational & firstNumber, const CRational & secondNumber);
+const bool operator == (const CRational & firstNumber, const CRational & secondNumber);
+
+std::istream & operator >> (std::istream & input, CRational & number);
