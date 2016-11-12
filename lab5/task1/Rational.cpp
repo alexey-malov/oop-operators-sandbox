@@ -193,6 +193,16 @@ const CRational & CRational::operator/=(const CRational & divider)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 11. Реализовать операторы == и !=
 //////////////////////////////////////////////////////////////////////////
+const bool operator==(const CRational & lhs, const CRational & rhs)
+{
+	return (lhs.GetNumerator() == rhs.GetNumerator() &&
+	        lhs.GetDenominator() == rhs.GetDenominator());
+}
+
+const bool operator!=(const CRational & lhs, const CRational & rhs)
+{
+	return !(lhs == rhs);
+}
 
 
 
