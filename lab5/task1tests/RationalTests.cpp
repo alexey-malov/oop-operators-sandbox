@@ -386,6 +386,21 @@ BOOST_AUTO_TEST_CASE(can_be_compare_equality)
 //	например: 7/15
 //////////////////////////////////////////////////////////////////////////
 
+BOOST_AUTO_TEST_CASE(can_be_read_from_istream)
+{
+	{
+	std::istringstream input("7/15");
+	CRational number;
+	input >> number;
+	VerifyRational(number, 7, 15);
+	}
 
+	{
+	std::istringstream input("");
+	CRational number;
+	input >> number;
+	VerifyRational(number, 0, 1);
+	}
+}
 
 BOOST_AUTO_TEST_SUITE_END()
