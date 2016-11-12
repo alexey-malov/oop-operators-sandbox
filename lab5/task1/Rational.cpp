@@ -215,17 +215,17 @@ const CRational & CRational::operator/=(const CRational & divider)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 14. Реализовать оператор ввода рационального числа из входного потока 
 //////////////////////////////////////////////////////////////////////////
-std::istream & operator>>(std::istream & input, CRational & rat)
+std::istream & operator >> (std::istream & input, CRational & rat)
 {
 	int numerator = 0;
 	int denominator = 1;
-	if ((input >> numerator) && (input.get() == '/') && (input >> denominator))
+	if ((input >> numerator) && (static_cast<char>(input.get()) == '/') && (input >> denominator))
 	{
 		rat = CRational(numerator, denominator);
 	}
 	else
 	{
-		input.setstate(std::ios_base::failbit); // NOTE: http://en.cppreference.com/w/cpp/io/ios_base/iostate
+		input.setstate(std::ios_base::failbit);
 	}
 	return input;
 }

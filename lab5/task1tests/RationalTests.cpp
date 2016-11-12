@@ -345,6 +345,41 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 			input >> rat;
 			VerifyRational(rat, 0, 1);
 		}
+
+		{
+			std::istringstream input("7.15");
+			CRational rat;
+			input >> rat;
+			BOOST_CHECK_EQUAL(input.fail(), true);
+		}
+
+		{
+			std::istringstream input("7.15");
+			int numerator;
+			input >> numerator;
+			BOOST_CHECK_EQUAL(input.fail(), false);
+			BOOST_CHECK_EQUAL(numerator, 7);
+			char delimiter = static_cast<char>(input.get());
+			BOOST_CHECK_EQUAL(delimiter, '.'); 
+			int denominator;
+			input >> denominator;
+			BOOST_CHECK_EQUAL(input.fail(), false);
+			BOOST_CHECK_EQUAL(denominator, 15);
+		}
+
+		{
+			std::istringstream input("7.15");
+			CRational rat(0, 1);
+			BOOST_CHECK_EQUAL(input.fail(), false);
+			input >> rat;
+			BOOST_CHECK_EQUAL(input.fail(), true);
+			VerifyRational(rat, 0, 1);
+			
+			std::string buffer("another string");
+			input >> buffer;
+			BOOST_CHECK_EQUAL(buffer, "another string");
+			BOOST_CHECK_EQUAL(input.fail(), true);
+		}
 	}
 
 
