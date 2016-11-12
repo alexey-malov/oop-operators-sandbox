@@ -107,6 +107,25 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //  -someRational = someOtherRational;
 //	+someRational = someOtherRational;
 //////////////////////////////////////////////////////////////////////////
+	BOOST_AUTO_TEST_CASE(has_unary_plus_that_return_itself)
+	{
+		VerifyRational(+CRational(3, 5), 3, 5);
+		VerifyRational(+CRational(0, 5), 0, 1);
+	}
+
+	BOOST_AUTO_TEST_CASE(has_unary_minus_that_negates_itself)
+	{
+		VerifyRational(-CRational(3, 5), -3, 5);
+		VerifyRational(-CRational(-3, -5), -3, 5);
+		VerifyRational(-CRational(3, -5), 3, 5);
+		VerifyRational(-CRational(-3, 5), 3, 5);
+		{
+			const CRational r1(-0, 5);
+			CRational r2 = -r1;
+			VerifyRational(r2, -0, 1);
+			VerifyRational(r2, +0, 1);
+		}
+	}
 
 
 
@@ -271,18 +290,36 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) != 7     → true
 //	3 != (2/3)     → true
 //////////////////////////////////////////////////////////////////////////
-	BOOST_AUTO_TEST_CASE(can_be_compared_on_equal)
-	{
-		BOOST_CHECK(CRational(1, 2) == CRational(1, 2));
-		BOOST_CHECK(CRational(1, 2) == CRational(2, 4));
-		BOOST_CHECK(CRational(4, 1) == 4);
-		BOOST_CHECK(3 == CRational(3, 1));
-		BOOST_CHECK(CRational(1, 2) != CRational(2, 3));
-		BOOST_CHECK(CRational(1, 2) != 7);
-		BOOST_CHECK(3 != CRational(2, 3));
-		BOOST_CHECK(CRational(0, 1) == CRational(0, 2));
-		BOOST_CHECK(CRational(0, 1) == 0);
-	}
+	BOOST_AUTO_TEST_SUITE(has_compare_operators)
+
+		BOOST_AUTO_TEST_CASE(equal_operator)
+		{
+			CRational rat(7, 4);
+			BOOST_CHECK(rat == rat);
+			BOOST_CHECK(CRational(1, 2) == CRational(1, 2));
+			BOOST_CHECK(CRational(1, 2) == CRational(2, 4));
+			BOOST_CHECK(CRational(4, 1) == 4);
+			BOOST_CHECK(3 == CRational(3, 1));
+			BOOST_CHECK(CRational(0, 1) == CRational(0, 2));
+			BOOST_CHECK(CRational(0, 1) == 0);
+			BOOST_CHECK(!(CRational(0, 1) == 1));
+			BOOST_CHECK(!(1 == CRational(0, 1)));
+			BOOST_CHECK(!(CRational(1, 2) == CRational(1, 3)));
+			BOOST_CHECK(!(CRational(1, 2) == CRational(1, 3)));
+			BOOST_CHECK(!(CRational(1, 3) == CRational(1, 2)));
+		}
+
+		BOOST_AUTO_TEST_CASE(not_equal_operator)
+		{
+			CRational rat(4, 7);
+			BOOST_CHECK(!(rat != rat));
+			BOOST_CHECK(CRational(1, 2) != CRational(2, 3));
+			BOOST_CHECK(CRational(1, 2) != 7);
+			BOOST_CHECK(3 != CRational(2, 3));
+			BOOST_CHECK(!(CRational(1, 2) != CRational(1, 2)));
+			BOOST_CHECK(!(CRational(7, 1) != 7));
+			BOOST_CHECK(!(3 != CRational(3, 1)));
+		}
 
 
 
@@ -298,6 +335,53 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	3 <= (7/2)     → true
 //	3 >= (8/2)     → false
 //////////////////////////////////////////////////////////////////////////
+	
+		BOOST_AUTO_TEST_CASE(less_than)
+		{
+			BOOST_CHECK(CRational(1, 2) < 7);
+			BOOST_CHECK(CRational(-1, 2) < 0);
+			BOOST_CHECK(0 < CRational(1, 2));
+			BOOST_CHECK(!(CRational(1, 2) < 0));
+			BOOST_CHECK(!(CRational(1, 2) < CRational(1, 2)));
+			BOOST_CHECK(CRational(1, 3) < CRational(1, 2));
+			BOOST_CHECK(CRational(-1, 2) < CRational(1, 2));
+		}
+
+		BOOST_AUTO_TEST_CASE(greater_than)
+		{
+			BOOST_CHECK(CRational(3, 1) > 2);
+			BOOST_CHECK(CRational(3, 1) > 0);
+			BOOST_CHECK(0 > CRational(-1, 2));
+			BOOST_CHECK(!(CRational(-1, 2) > 0));
+			BOOST_CHECK(CRational(1, 2) > CRational(-1, 2));
+			BOOST_CHECK(!(CRational(1, 2) > CRational(1, 2)));
+			BOOST_CHECK(!(CRational(1, 3) > CRational(1, 2)));
+			BOOST_CHECK(!(CRational(-6, 2) > CRational(-2, 1)));
+		}
+
+		BOOST_AUTO_TEST_CASE(less_than_or_equal)
+		{
+			BOOST_CHECK(3 <= CRational(7, 2));
+			BOOST_CHECK(!(CRational(1, 2) <= CRational(1, 3)));
+			BOOST_CHECK(CRational(7, 2) <= CRational(7, 2));
+			BOOST_CHECK(CRational(7, 3) <= CRational(7, 2));
+			BOOST_CHECK(CRational(1, 2) <= 1);
+			BOOST_CHECK(0 <= CRational(1, 2));
+			BOOST_CHECK(CRational(-1, 2) <= CRational(-1, 3));
+		}
+
+		BOOST_AUTO_TEST_CASE(greater_than_or_equal)
+		{
+			BOOST_CHECK(CRational(1, 2) >= CRational(1, 3));
+			BOOST_CHECK(!(3 >= CRational(8, 2)));
+			BOOST_CHECK(CRational(1, 2) >= CRational(1, 3));
+			BOOST_CHECK(CRational(7, 2) >= CRational(7, 2));
+			BOOST_CHECK(CRational(1, 2) >= 0);
+			BOOST_CHECK(1 >= CRational(1, 2));
+			BOOST_CHECK(CRational(-1, 3) >= CRational(-1, 2));
+		}
+
+	BOOST_AUTO_TEST_SUITE_END()
 
 
 
