@@ -120,16 +120,15 @@ unsigned GCD(unsigned a, unsigned b)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 11. Реализовать операторы == и !=
 //////////////////////////////////////////////////////////////////////////
-const bool operator==(const CRational & lhm, const CRational & rhm)
+const bool operator==(const CRational & lhs, const CRational & rhs)
 {
-	return (lhm.GetNumerator() == rhm.GetNumerator() &&
-	        lhm.GetDenominator() == rhm.GetDenominator());
+	return (lhs.GetNumerator() == rhs.GetNumerator() &&
+	        lhs.GetDenominator() == rhs.GetDenominator());
 }
 
-const bool operator!=(const CRational & lhm, const CRational & rhm)
+const bool operator!=(const CRational & lhs, const CRational & rhs)
 {
-	return (lhm.GetNumerator() != rhm.GetNumerator() ||
-	        lhm.GetDenominator() != rhm.GetDenominator());
+	return !(lhs == rhs);
 }
 
 
