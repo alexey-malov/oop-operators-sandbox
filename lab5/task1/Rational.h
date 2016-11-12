@@ -153,9 +153,6 @@ public:
 	//	3 != (2/3)     → true
 	//////////////////////////////////////////////////////////////////////////
 
-
-
-
 	//////////////////////////////////////////////////////////////////////////
 	// TODO: 12. Реализовать операторы <, >, <=, >=
 	// Сравнивают два рациональных числа, рациональное с целым, 
@@ -195,3 +192,6 @@ private:
 
 // Вычисляет наибольший общий делитель (greatest common denominator) чисел a и b
 unsigned GCD(unsigned a, unsigned b);
+
+const bool operator != (const CRational & firstNumber, const CRational & secondNumber);
+const bool operator == (const CRational & firstNumber, const CRational & secondNumber);
