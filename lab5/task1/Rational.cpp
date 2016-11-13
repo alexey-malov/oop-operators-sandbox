@@ -236,3 +236,16 @@ const bool operator>=(const CRational & lhs, const CRational & rhs)
 //////////////////////////////////////////////////////////////////////////
 
 
+
+
+//////////////////////////////////////////////////////////////////////////
+//	TODO: 15. Реализовать метод ToCompoundFraction() согласно заданию
+//	Возвращает смешанную дробь в формате std::pair<int, CRational>
+//	например: 16/15  -> <1, (1/15)>
+//////////////////////////////////////////////////////////////////////////
+std::pair<int, CRational> CRational::ToCompoundFraction() const
+{
+	return std::make_pair<int, CRational>(m_numerator / m_denominator, 
+	                                      CRational(m_numerator % m_denominator,
+	                                                m_denominator));
+}
