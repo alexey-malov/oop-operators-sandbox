@@ -238,4 +238,45 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 
 
 
+
+//////////////////////////////////////////////////////////////////////////
+//	TODO: 15. Реализовать метод ToCompoundFraction() согласно заданию
+//	Возвращает смешанную дробь в формате std::pair<int, CRational>
+//	например: 16/15  -> <1, (1/15)>
+//	          4/15   -> <0, (4/15)>
+//////////////////////////////////////////////////////////////////////////
+
+	BOOST_AUTO_TEST_CASE(can_be_converted_to_compound_fraction)
+	{
+		{
+			auto compoundFration = CRational(0, 4).ToCompoundFraction();
+			BOOST_CHECK_EQUAL(compoundFration.first, 0);
+			VerifyRational(compoundFration.second, 0, 1);
+		}
+
+		{
+			auto compoundFration = CRational(16, 15).ToCompoundFraction();
+			BOOST_CHECK_EQUAL(compoundFration.first, 1);
+			VerifyRational(compoundFration.second, 1, 15);
+		}
+
+		{
+			auto compoundFration = CRational(4, 15).ToCompoundFraction();
+			BOOST_CHECK_EQUAL(compoundFration.first, 0);
+			VerifyRational(compoundFration.second, 4, 15);
+		}
+
+		{
+			auto compoundFration = CRational(-4, 15).ToCompoundFraction();
+			BOOST_CHECK_EQUAL(compoundFration.first, 0);
+			VerifyRational(compoundFration.second, -4, 15);
+		}
+
+		{
+			auto compoundFration = CRational(-16, 15).ToCompoundFraction();
+			BOOST_CHECK_EQUAL(compoundFration.first, -1);
+			VerifyRational(compoundFration.second, -1, 15);
+		}
+	}
+
 BOOST_AUTO_TEST_SUITE_END()
