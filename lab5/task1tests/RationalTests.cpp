@@ -73,8 +73,11 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	cout << r.ToDouble(); // Должно вывести 0.6
 //////////////////////////////////////////////////////////////////////////
 
-
-
+	BOOST_AUTO_TEST_CASE(can_get_double_value)
+	{
+		BOOST_CHECK_EQUAL(CRational(3, 5).ToDouble(), 0.6);
+		BOOST_CHECK_EQUAL(CRational(0, 1).ToDouble(), 0.0);
+	}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 2. Реализовать унарный + и унарный -
