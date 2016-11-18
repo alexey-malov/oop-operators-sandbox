@@ -51,15 +51,25 @@ unsigned GCD(unsigned a, unsigned b)
 // TODO: 1. Реализовать метод ToDouble() согласно заданию
 //////////////////////////////////////////////////////////////////////////
 
-
+double CRational::ToDouble()
+{
+	return static_cast<double>(m_numerator) / m_denominator;
+}
 
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 2. Реализовать унарный + и унарный -
 //////////////////////////////////////////////////////////////////////////
 
+CRational const CRational::operator+()
+{
+	return *this;
+}
 
-
+CRational const CRational::operator-()
+{
+	return CRational(-m_numerator, m_denominator);
+}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 3. Реализовать бинарный +
