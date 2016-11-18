@@ -73,7 +73,10 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	cout << r.ToDouble(); // Должно вывести 0.6
 //////////////////////////////////////////////////////////////////////////
 
-
+	BOOST_AUTO_TEST_CASE(can_get_double_value)
+	{
+		BOOST_CHECK_EQUAL(CRational(3, 5).ToDouble(), 0.6);
+	}
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -93,6 +96,7 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //  -someRational = someOtherRational;
 //	+someRational = someOtherRational;
 //////////////////////////////////////////////////////////////////////////
+
 
 
 
