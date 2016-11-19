@@ -125,6 +125,7 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 		BOOST_AUTO_TEST_CASE(with_0)
 		{
 			VerifyRational(CRational(0) + CRational(1, 3), 1, 3);
+			VerifyRational(CRational(1, 3) + CRational(0), 1, 3);
 		}
 
 	BOOST_AUTO_TEST_SUITE_END()
