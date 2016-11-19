@@ -128,7 +128,17 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) += (1/6)  → (2/3)
 //	(1/2) += 1      → (3/2)
 //////////////////////////////////////////////////////////////////////////
+	BOOST_AUTO_TEST_CASE(has_operation_of_addition_combined_with_assignment)
+	{
+		CRational rational(8, 1000);
+		VerifyRational(rational += rational, 2, 125);
+		VerifyRational(rational += rational, 4, 125);
 
+		VerifyRational(CRational(1, 3) += 0, 1, 3);
+
+		VerifyRational(CRational(1, 2) += CRational(1, 6), 2, 3);
+		VerifyRational(CRational(1, 2) += 1, 3, 2);
+	}
 
 
 
