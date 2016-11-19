@@ -106,8 +106,21 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	1 + (1/2)     = (3/2)
 //////////////////////////////////////////////////////////////////////////
 
-
-
+	BOOST_AUTO_TEST_CASE(can_be_added_with_rational)
+	{
+		VerifyRational(CRational(1, 2) + CRational(1, 6), 2, 3);
+		VerifyRational(CRational(0, 2) + CRational(1, 6), 1, 6);
+		VerifyRational(CRational(-1, 2) + CRational(1, 6), -1, 3);
+	}
+	BOOST_AUTO_TEST_CASE(can_be_added_with_integer)
+	{
+		VerifyRational(CRational(1, 2) + 1, 3, 2);
+		VerifyRational(1 + CRational(1, 2), 3, 2);
+	}
+	BOOST_AUTO_TEST_CASE(can_be_added_with_zero)
+	{
+		VerifyRational(CRational(1, 2) + CRational(0), 1, 2);
+	}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 4. Реализовать бинарный -

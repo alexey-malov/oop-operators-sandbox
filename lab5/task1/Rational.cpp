@@ -65,8 +65,30 @@ unsigned GCD(unsigned a, unsigned b)
 // TODO: 3. Реализовать бинарный +
 //////////////////////////////////////////////////////////////////////////
 
+CRational const CRational::operator+(CRational const& r2) const
+{
+	int resultNumerator = 0;
+	int resultDenominator = 0;
 
+	int gcdDenominator = GCD(m_denominator, r2.GetDenominator());
+	resultDenominator = m_denominator / gcdDenominator;
+	resultNumerator = (m_numerator * r2.GetDenominator() / gcdDenominator) + (r2.GetNumerator() * resultDenominator);
+	int gcdNumerator = GCD(resultNumerator, gcdDenominator);
+	resultNumerator /= gcdNumerator;
+	resultDenominator *= r2.GetDenominator() / gcdNumerator;
 
+	return CRational(resultNumerator, resultDenominator);
+}
+
+CRational const CRational::operator+(int const& number) const
+{
+	return CRational(m_numerator + number * m_denominator, m_denominator);
+}
+
+CRational const operator+(int const& number, CRational const& r)
+{
+	return CRational(r.GetNumerator() + number * r.GetDenominator(), r.GetDenominator());
+}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 4. Реализовать бинарный -
