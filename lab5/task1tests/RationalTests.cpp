@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 		}
 	}
 
-	BOOST_AUTO_TEST_CASE(has_unary_minus_that_return_reverse_itself)
+	BOOST_AUTO_TEST_CASE(has_unary_minus_that_retrned_unsigned_fraction)
 	{
 		{
 			const CRational r1(3, 5);
