@@ -94,8 +94,17 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	+someRational = someOtherRational;
 //////////////////////////////////////////////////////////////////////////
 
-
-
+	BOOST_AUTO_TEST_CASE(can_be_used_with_unary_plus)
+	{
+		VerifyRational(+CRational(3, 5), 3, 5);
+		VerifyRational(+CRational(-3, 5), -3, 5);
+	}
+	BOOST_AUTO_TEST_CASE(can_be_used_with_unary_minus)
+	{
+		VerifyRational(-CRational(0, 5), 0, 1);
+		VerifyRational(-CRational(3, 5), -3, 5);
+		VerifyRational(-CRational(-3, 5), 3, 5);
+	}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 3. Реализовать бинарный +
