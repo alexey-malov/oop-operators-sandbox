@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include <iostream>
 #include <utility>
 
 /*
@@ -23,7 +24,7 @@ public:
 	//	CRational r(3, 5)
 	//	cout << r.ToDouble(); // Должно вывести 0.6
 	//////////////////////////////////////////////////////////////////////////
-
+	double ToDouble() const;
 
 
 
@@ -44,6 +45,8 @@ public:
 	//  -someRational = someOtherRational;
 	//	+someRational = someOtherRational;
 	//////////////////////////////////////////////////////////////////////////
+	const CRational operator+() const;
+	const CRational operator-() const;
 
 
 
@@ -79,6 +82,7 @@ public:
 	//	(1/2) += (1/6)  → (2/3)
 	//	(1/2) += 1      → (3/2)
 	//////////////////////////////////////////////////////////////////////////
+	const CRational & operator+=(const CRational & summand);
 
 
 
@@ -89,6 +93,7 @@ public:
 	// (1/2) -= (1/6)  → (1/3)
 	// (1/2) -= 1      → (-1/2)
 	//////////////////////////////////////////////////////////////////////////
+	const CRational & operator-=(const CRational & subtrahend);
 
 
 
@@ -101,7 +106,6 @@ public:
 	//	(1/2) * (-3)  = (-3/2)
 	//	(7*2) / 3     = (14/3)
 	//////////////////////////////////////////////////////////////////////////
-
 
 
 
@@ -126,6 +130,7 @@ public:
 	//	(1/2) *= (2/3) → (1/3)
 	//	(1/2) *= 3     → (3/2)
 	//////////////////////////////////////////////////////////////////////////
+	const CRational & operator*=(const CRational & multiplier);
 
 
 
@@ -138,6 +143,7 @@ public:
 	//	(1/2) /= (2/3) → (3/4)
 	//	(1/2) /= 3     → (1/6)
 	//////////////////////////////////////////////////////////////////////////
+	const CRational & operator/=(const CRational & divider);
 
 
 
@@ -201,9 +207,30 @@ private:
 	int m_numerator;
 	int m_denominator;
 
+	void Assign(int numerator, int denominator);
 	// Нормализует рациональное число
 	void Normalize();
 };
 
-// Вычисляет наибольший общий знаменатель чисел a и b
+// Вычисляет наибольший общий делитель (greatest common denominator) чисел a и b
 unsigned GCD(unsigned a, unsigned b);
+
+// Вычисляет наименьшее общее кратное (least common multiple) чисел a и b
+unsigned LCM(unsigned a, unsigned b);
+
+const CRational operator/(const CRational & dividend, const CRational & divider);
+const CRational operator+(const CRational & lhs, const CRational & rhs);
+
+const CRational operator-(const CRational & lhs, const CRational & rhs);
+
+const CRational operator*(const CRational & lhs, const CRational & rhs);
+
+const bool operator<(const CRational & lhs, const CRational & rhs);
+const bool operator>(const CRational & lhs, const CRational & rhs);
+const bool operator<=(const CRational & lhs, const CRational & rhs);
+const bool operator>=(const CRational & lhs, const CRational & rhs);
+
+std::ostream & operator<<(std::ostream & output, const CRational & value);
+
+const bool operator != (const CRational & lhs, const CRational & rhs);
+const bool operator == (const CRational & lhs, const CRational & rhs);
