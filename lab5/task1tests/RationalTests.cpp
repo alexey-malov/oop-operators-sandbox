@@ -92,15 +92,24 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	CRational r3 = +r2; // r3 также равно -3/5
 //	assert(r3.GetNumerator(), -3);
 //	assert(r3.GetDenominator(), 5);
-// Унарный минус возвращает раицональное число без знака
+// Унарный минус возвращает рациональное число без знака
 // Унарный плюс возвращает рациональное число, равное текущему
 // Реализация не должна допускать операции вроде:
 //  -someRational = someOtherRational;
 //	+someRational = someOtherRational;
 //////////////////////////////////////////////////////////////////////////
 
-
-
+	BOOST_AUTO_TEST_CASE(can_be_used_with_unary_plus)
+	{
+		VerifyRational(+CRational(3, 5), 3, 5);
+		VerifyRational(+CRational(-3, 5), -3, 5);
+	}
+	BOOST_AUTO_TEST_CASE(can_be_used_with_unary_minus)
+	{
+		VerifyRational(-CRational(0, 5), 0, 1);
+		VerifyRational(-CRational(3, 5), -3, 5);
+		VerifyRational(-CRational(-3, 5), 3, 5);
+	}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 3. Реализовать бинарный +
