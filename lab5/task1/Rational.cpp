@@ -96,6 +96,17 @@ const CRational CRational::operator-() const
 //////////////////////////////////////////////////////////////////////////
 // TODO: 6. Реализовать оператор -=
 //////////////////////////////////////////////////////////////////////////
+const CRational & CRational::operator-=(const CRational & subtrahend)
+{
+	if (subtrahend.GetNumerator() == 0)
+	{
+		return *this;
+	}
+	m_numerator = m_numerator * subtrahend.GetDenominator() - m_denominator * subtrahend.GetNumerator();
+	m_denominator = m_denominator * subtrahend.GetDenominator();
+	Normalize();
+	return *this;
+}
 
 
 
