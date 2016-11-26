@@ -120,24 +120,6 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 		VerifyRational(-CRational(-3, -5), -3, 5);
 		VerifyRational(-CRational(3, -5), 3, 5);
 		VerifyRational(-CRational(-3, 5), 3, 5);
-		{
-			const CRational r1(-0, 5);
-			CRational r2 = -r1;
-			VerifyRational(r2, -0, 1);
-			VerifyRational(r2, +0, 1);
-		}
-
-		{
-			const CRational r1(3, 5);
-			CRational r2 = -r1;
-			VerifyRational(r2, -3, 5);
-		}
-
-		{
-			const CRational r1(-3, 5);
-			CRational r2 = -r1;
-			VerifyRational(r2, 3, 5);
-		}
 	}
 
 
