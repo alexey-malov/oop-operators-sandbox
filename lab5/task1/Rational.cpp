@@ -70,8 +70,6 @@ const CRational CRational::operator-() const
 	return CRational(-m_numerator, m_denominator);
 }
 
-
-
 //////////////////////////////////////////////////////////////////////////
 // TODO: 3. Реализовать бинарный +
 //////////////////////////////////////////////////////////////////////////
@@ -124,7 +122,23 @@ const CRational CRational::operator-() const
 //////////////////////////////////////////////////////////////////////////
 // TODO: 10. Реализовать оператор /=
 //////////////////////////////////////////////////////////////////////////
+const CRational & CRational::operator/=(const CRational & divider)
+{
+	m_numerator *= divider.GetDenominator();
+	m_denominator *= divider.GetNumerator();
+	Normalize();
+	return *this;
+}
 
+const CRational & CRational::operator/=(const int & divider)
+{
+	if (divider != 0)
+	{
+		m_denominator *= divider;
+		Normalize();
+	}
+	return *this;
+}
 
 
 
