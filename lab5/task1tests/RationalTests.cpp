@@ -72,7 +72,12 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	CRational r(3, 5)
 //	cout << r.ToDouble(); // Должно вывести 0.6
 //////////////////////////////////////////////////////////////////////////
-
+	BOOST_AUTO_TEST_CASE(can_be_converted_to_double)
+	{
+		BOOST_CHECK_CLOSE_FRACTION(CRational(3, 5).ToDouble(), 0.6, DBL_EPSILON);
+		BOOST_CHECK_CLOSE_FRACTION(CRational(7, 2).ToDouble(), 3.5, DBL_EPSILON);
+		BOOST_CHECK_CLOSE_FRACTION(CRational(-3, 4).ToDouble(), -0.75, DBL_EPSILON);
+	}
 
 
 
