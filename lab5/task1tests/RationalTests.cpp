@@ -3,7 +3,6 @@
 
 #include "stdafx.h"
 #include "../task1/Rational.h"
-#include <iosfwd>
 
 BOOST_AUTO_TEST_CASE(Test_Greates_Common_Denominator)
 {
@@ -40,6 +39,13 @@ void VerifyRational(const CRational & r, int expectedNumerator, int expectedDeno
 {
 	BOOST_CHECK_EQUAL(r.GetNumerator(), expectedNumerator);
 	BOOST_CHECK_EQUAL(r.GetDenominator(), expectedDenominator);
+}
+
+void VerifyCompoundRational(const std::pair<int, CRational> & result,
+                            const std::pair<int, CRational> & expectedResult)
+{
+	BOOST_CHECK_EQUAL(result.first, expectedResult.first);
+	BOOST_CHECK_EQUAL(result.second, expectedResult.second);
 }
 
 BOOST_AUTO_TEST_SUITE(Rational_number)
@@ -325,6 +331,8 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 	}
 
 
+
+
 //////////////////////////////////////////////////////////////////////////
 // TODO: 12. Реализовать операторы <, >, <=, >=
 // Сравнивают два рациональных числа, рациональное с целым, 
@@ -433,35 +441,12 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 
 	BOOST_AUTO_TEST_CASE(can_be_converted_to_compound_fraction)
 	{
-		{
-			auto compoundFration = CRational(0, 4).ToCompoundFraction();
-			BOOST_CHECK_EQUAL(compoundFration.first, 0);
-			VerifyRational(compoundFration.second, 0, 1);
-		}
-
-		{
-			auto compoundFration = CRational(16, 15).ToCompoundFraction();
-			BOOST_CHECK_EQUAL(compoundFration.first, 1);
-			VerifyRational(compoundFration.second, 1, 15);
-		}
-
-		{
-			auto compoundFration = CRational(4, 15).ToCompoundFraction();
-			BOOST_CHECK_EQUAL(compoundFration.first, 0);
-			VerifyRational(compoundFration.second, 4, 15);
-		}
-
-		{
-			auto compoundFration = CRational(-4, 15).ToCompoundFraction();
-			BOOST_CHECK_EQUAL(compoundFration.first, 0);
-			VerifyRational(compoundFration.second, -4, 15);
-		}
-
-		{
-			auto compoundFration = CRational(-16, 15).ToCompoundFraction();
-			BOOST_CHECK_EQUAL(compoundFration.first, -1);
-			VerifyRational(compoundFration.second, -1, 15);
-		}
+		VerifyCompoundRational(CRational(0, 4).ToCompoundFraction(), std::pair<int, CRational>(0, CRational(0, 1)));
+		VerifyCompoundRational(CRational(16, 15).ToCompoundFraction(), std::pair<int, CRational>(1, CRational(1, 15)));
+		VerifyCompoundRational(CRational(4, 15).ToCompoundFraction(), std::pair<int, CRational>(0, CRational(4, 15)));
+		VerifyCompoundRational(CRational(-4, 15).ToCompoundFraction(), std::pair<int, CRational>(0, CRational(-4, 15)));
+		VerifyCompoundRational(CRational(-16, 15).ToCompoundFraction(), std::pair<int, CRational>(-1, CRational(-1, 15)));
 	}
+
 
 BOOST_AUTO_TEST_SUITE_END()
