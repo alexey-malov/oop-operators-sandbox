@@ -114,8 +114,6 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 		VerifyRational(+CRational(0, 5), 0, 1);
 	}
 
-	BOOST_AUTO_TEST_CASE(has_unary_minus_that_negates_itself)
-	BOOST_AUTO_TEST_CASE(has_unary_minus_that_retrned_unsigned_fraction)
 	BOOST_AUTO_TEST_CASE(has_unary_minus_that_return_unsigned_fraction)
 	{
 		VerifyRational(-CRational(3, 5), -3, 5);
@@ -128,9 +126,11 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 			VerifyRational(r2, -0, 1);
 			VerifyRational(r2, +0, 1);
 		}
+
+		{
 			const CRational r1(3, 5);
 			CRational r2 = -r1;
-			VerifyRational(r2, 3, 5);
+			VerifyRational(r2, -3, 5);
 		}
 
 		{

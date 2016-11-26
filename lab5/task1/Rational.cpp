@@ -80,8 +80,7 @@ const CRational CRational::operator+() const
 
 const CRational CRational::operator-() const
 {
-	int k = (m_numerator < 0) ? -1 : +1;
-	return CRational(k * m_numerator, m_denominator);
+	return CRational(-m_numerator, m_denominator);
 }
 
 
