@@ -42,6 +42,21 @@ void VerifyRational(const CRational & r, int expectedNumerator, int expectedDeno
 	BOOST_CHECK_EQUAL(r.GetDenominator(), expectedDenominator);
 }
 
+void VerifyInputOperator(const std::string & str, boost::optional<CRational> expectedResult)
+{
+	std::istringstream input(str);
+	CRational rat;
+	input >> rat;
+	if (expectedResult == boost::none)
+	{
+		BOOST_CHECK_EQUAL(input.fail(), true);
+	}
+	else
+	{
+		VerifyRational(rat, expectedResult->GetNumerator(), expectedResult->GetDenominator());
+	}
+}
+
 BOOST_AUTO_TEST_SUITE(Rational_number)
 	BOOST_AUTO_TEST_CASE(is_0_by_default)
 	{
@@ -422,61 +437,10 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //////////////////////////////////////////////////////////////////////////
 	BOOST_AUTO_TEST_CASE(can_be_read_from_istream)
 	{
-		{
-			std::istringstream input("7/15");
-			CRational rat;
-			input >> rat;
-			VerifyRational(rat, 7, 15);
-		}
-
-		{
-			std::istringstream input("-1/1");
-			CRational rat;
-			input >> rat;
-			VerifyRational(rat, -1, 1);
-		}
-
-		{
-			std::istringstream input("0");
-			CRational rat;
-			input >> rat;
-			VerifyRational(rat, 0, 1);
-		}
-
-		{
-			std::istringstream input("7.15");
-			CRational rat;
-			input >> rat;
-			BOOST_CHECK_EQUAL(input.fail(), true);
-		}
-
-		{
-			std::istringstream input("7.15");
-			int numerator;
-			input >> numerator;
-			BOOST_CHECK_EQUAL(input.fail(), false);
-			BOOST_CHECK_EQUAL(numerator, 7);
-			char delimiter = static_cast<char>(input.get());
-			BOOST_CHECK_EQUAL(delimiter, '.'); 
-			int denominator;
-			input >> denominator;
-			BOOST_CHECK_EQUAL(input.fail(), false);
-			BOOST_CHECK_EQUAL(denominator, 15);
-		}
-
-		{
-			std::istringstream input("7.15");
-			CRational rat(0, 1);
-			BOOST_CHECK_EQUAL(input.fail(), false);
-			input >> rat;
-			BOOST_CHECK_EQUAL(input.fail(), true);
-			VerifyRational(rat, 0, 1);
-			
-			std::string buffer("another string");
-			input >> buffer;
-			BOOST_CHECK_EQUAL(buffer, "another string");
-			BOOST_CHECK_EQUAL(input.fail(), true);
-		}
+		VerifyInputOperator("7/15", CRational(7, 15));
+		VerifyInputOperator("-1/1", CRational(-1, 1));
+		VerifyInputOperator("0", CRational(0, 1));
+		VerifyInputOperator("7.15", boost::none);
 	}
 
 
