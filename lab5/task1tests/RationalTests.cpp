@@ -105,7 +105,21 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) + 1     = (3/2)
 //	1 + (1/2)     = (3/2)
 //////////////////////////////////////////////////////////////////////////
-
+BOOST_AUTO_TEST_SUITE(binary_operator_plus)
+	BOOST_AUTO_TEST_CASE(returns_the_result_of_adding_two_rational_numbers)
+	{
+		VerifyRational(CRational(4, 8) + CRational(1, 3), 5, 6);
+		VerifyRational(CRational(4, 8) + CRational(-1, 3), 1, 6);
+	}
+	BOOST_AUTO_TEST_CASE(returns_the_result_of_adding_rational_number_and_integer)
+	{
+		VerifyRational(CRational(4, 8) + 2, 5, 2);
+	}
+	BOOST_AUTO_TEST_CASE(returns_the_result_of_adding_integer_and_rational_number)
+	{
+		//VerifyRational(2 + CRational(4, 8), 5, 2);
+	}
+BOOST_AUTO_TEST_SUITE_END()
 
 
 
@@ -117,7 +131,6 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) - 1     = (-1/2)
 //	1 - (1/2)     = (1/2)
 //////////////////////////////////////////////////////////////////////////
-
 
 
 

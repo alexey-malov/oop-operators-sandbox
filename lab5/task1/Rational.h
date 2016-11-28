@@ -8,13 +8,14 @@ class CRational final
 {
 public:
 	CRational(int numerator = 0, int denominator = 1);
+	//CRational(int number);
 
 	// Возвращает числитель
 	int GetNumerator() const;
 
 	// Возвращает знаменатель
 	int GetDenominator() const;
-
+	CRational const operator +(CRational const& rat);
 	//////////////////////////////////////////////////////////////////////////
 	// TODO: 1. Реализовать метод ToDouble() согласно заданию
 	// Возвращает отношение числителя и знаменателя в виде числа double
@@ -55,7 +56,6 @@ public:
 	//	(1/2) + 1     = (3/2)
 	//	1 + (1/2)     = (3/2)
 	//////////////////////////////////////////////////////////////////////////
-
 
 
 
@@ -195,3 +195,4 @@ private:
 
 // Вычисляет наибольший общий делитель (greatest common denominator) чисел a и b
 unsigned GCD(unsigned a, unsigned b);
+

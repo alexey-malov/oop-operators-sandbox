@@ -19,6 +19,11 @@ CRational::CRational(int numerator, int denominator)
 	}
 	Normalize();
 }
+//CRational::CRational(int number)
+//	: m_numerator(number)
+//	, m_denominator(1)
+//{
+//}
 
 int CRational::GetNumerator() const
 {
@@ -64,15 +69,19 @@ unsigned GCD(unsigned a, unsigned b)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 3. Реализовать бинарный +
 //////////////////////////////////////////////////////////////////////////
+CRational const CRational::operator +(CRational const& rat)
+{
 
-
-
+	int numerator = rat.GetNumerator() * (*this).GetDenominator() +
+		(*this).GetNumerator() * rat.GetDenominator();
+	int denominator = rat.GetDenominator() * (*this).GetDenominator();
+	CRational result(numerator, denominator);
+	return result;
+}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 4. Реализовать бинарный -
 //////////////////////////////////////////////////////////////////////////
-
-
 
 
 //////////////////////////////////////////////////////////////////////////
