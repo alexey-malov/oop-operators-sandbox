@@ -75,8 +75,7 @@ CRational const operator +(CRational const& a, CRational const& b)
 	int numerator = a.GetNumerator() * b.GetDenominator() +
 		b.GetNumerator() * a.GetDenominator();
 	int denominator = a.GetDenominator() * b.GetDenominator();
-	CRational result(numerator, denominator);
-	return result;
+	return CRational(numerator, denominator);
 }
 
 //////////////////////////////////////////////////////////////////////////
