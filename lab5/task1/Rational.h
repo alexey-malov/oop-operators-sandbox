@@ -15,7 +15,6 @@ public:
 
 	// Возвращает знаменатель
 	int GetDenominator() const;
-	CRational const operator +(CRational const& rat);
 	//////////////////////////////////////////////////////////////////////////
 	// TODO: 1. Реализовать метод ToDouble() согласно заданию
 	// Возвращает отношение числителя и знаменателя в виде числа double
@@ -195,4 +194,5 @@ private:
 
 // Вычисляет наибольший общий делитель (greatest common denominator) чисел a и b
 unsigned GCD(unsigned a, unsigned b);
+CRational const operator +(CRational const& a, CRational const& b);
 

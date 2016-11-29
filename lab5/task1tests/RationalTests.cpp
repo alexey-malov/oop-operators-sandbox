@@ -117,7 +117,7 @@ BOOST_AUTO_TEST_SUITE(binary_operator_plus)
 	}
 	BOOST_AUTO_TEST_CASE(returns_the_result_of_adding_integer_and_rational_number)
 	{
-		//VerifyRational(2 + CRational(4, 8), 5, 2);
+		VerifyRational(2 + CRational(4, 8), 5, 2);
 	}
 BOOST_AUTO_TEST_SUITE_END()
 
