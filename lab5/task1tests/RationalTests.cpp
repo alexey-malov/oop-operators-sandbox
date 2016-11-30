@@ -305,7 +305,37 @@ BOOST_AUTO_TEST_SUITE_END()
 //	(1/2) != 7     → true
 //	3 != (2/3)     → true
 //////////////////////////////////////////////////////////////////////////
+BOOST_AUTO_TEST_SUITE(operator_equal)
+BOOST_AUTO_TEST_CASE(returns_true_if_two_rational_numbers_are_equal)
+{
+	BOOST_CHECK(CRational(1, 2) == CRational(1, 2));
+}
+BOOST_AUTO_TEST_CASE(returns_true_if_rational_number_and_integer_are_equal)
+{
+	BOOST_CHECK(CRational(4, 1) == 4);
+}
+BOOST_AUTO_TEST_CASE(returns_true_if_integer_and_rational_number_are_equal)
+{
+	BOOST_CHECK(3 == CRational(3, 1));
+}
+BOOST_AUTO_TEST_SUITE_END()
 
+BOOST_AUTO_TEST_SUITE(operator_not_equal)
+BOOST_AUTO_TEST_CASE(returns_true_if_two_rational_numbers_are_not_equal)
+{
+	BOOST_CHECK(CRational(1, 2) != CRational(2, 3));
+}
+BOOST_AUTO_TEST_CASE(returns_true_if_rational_number_and_integer_are_equal)
+{
+	BOOST_CHECK(CRational(1, 2) != 7);
+	BOOST_CHECK(!(CRational(7, 1) != 7));
+}
+BOOST_AUTO_TEST_CASE(returns_true_if_integer_and_rational_number_are_equal)
+{
+	BOOST_CHECK(3 != CRational(2, 3));
+	BOOST_CHECK(!(3 != CRational(3, 1)));
+}
+BOOST_AUTO_TEST_SUITE_END()
 
 
 

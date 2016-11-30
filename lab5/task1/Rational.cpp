@@ -168,8 +168,15 @@ CRational const CRational::operator /=(CRational const& b)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 11. Реализовать операторы == и !=
 //////////////////////////////////////////////////////////////////////////
+bool const operator ==(CRational const& a, CRational const& b)
+{
+	return ((a.GetNumerator() == b.GetNumerator()) && (a.GetDenominator() == b.GetDenominator()));
+}
 
-
+bool const operator !=(CRational const& a, CRational const& b)
+{
+	return !(a==b);
+}
 
 
 //////////////////////////////////////////////////////////////////////////
