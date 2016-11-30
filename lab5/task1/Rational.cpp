@@ -1,5 +1,6 @@
 ﻿#include "stdafx.h"
 #include "Rational.h"
+#include <string>
 #include <utility>
 #include <stdexcept>
 
@@ -212,7 +213,11 @@ bool const operator <=(CRational const& a, CRational const& b)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 13. Реализовать оператор вывода рационального числа в выходной поток 
 //////////////////////////////////////////////////////////////////////////
-
+std::ostream & operator <<(std::ostream &stream, CRational const& rational)
+{
+	stream << rational.GetNumerator() << "/" << rational.GetDenominator();
+	return stream;
+}
 
 
 

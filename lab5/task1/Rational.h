@@ -178,7 +178,6 @@ public:
 
 
 
-
 	//////////////////////////////////////////////////////////////////////////
 	// TODO: 14. Реализовать оператор ввода рационального числа из входного потока 
 	//	std::istream в формате <числитель>/<знаменатель>, 
@@ -204,3 +203,4 @@ bool const operator >(CRational const& a, CRational const& b);
 bool const operator <(CRational const& a, CRational const& b);
 bool const operator >=(CRational const& a, CRational const& b);
 bool const operator <=(CRational const& a, CRational const& b);
+std::ostream & operator <<(std::ostream &stream, CRational const& rational);
