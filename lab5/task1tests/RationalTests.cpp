@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	cout << r.ToDouble(); // Должно вывести 0.6
 //////////////////////////////////////////////////////////////////////////
 BOOST_AUTO_TEST_SUITE(ToDouble_function)
-	BOOST_AUTO_TEST_CASE(returns_the_result_of_division_numerator_and_denumerator)
+	BOOST_AUTO_TEST_CASE(should_convert_the_rational_number_to_double)
 	{
 		CRational rational(3, 5);
 		BOOST_CHECK_CLOSE(rational.ToDouble(), 0.6, 0.01);
@@ -100,14 +100,14 @@ BOOST_AUTO_TEST_SUITE_END()
 //	+someRational = someOtherRational;
 //////////////////////////////////////////////////////////////////////////
 BOOST_AUTO_TEST_SUITE(unary_operator_minus)
-	BOOST_AUTO_TEST_CASE(returns_the_negative_of_rational_number)
+	BOOST_AUTO_TEST_CASE(should_return_the_rational_number_with_the_opposite_sign)
 	{
 		VerifyRational(-CRational(3, 5), -3, 5);
 	}
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(unary_operator_plus)
-BOOST_AUTO_TEST_CASE(returns_the_positive_of_rational_number)
+BOOST_AUTO_TEST_CASE(should_return_not_changed_rational_number)
 {
 	VerifyRational(+CRational(3, 5), 3, 5);
 	VerifyRational(+CRational(-3, 5), -3, 5);
@@ -125,15 +125,15 @@ BOOST_AUTO_TEST_SUITE_END()
 //	1 + (1/2)     = (3/2)
 //////////////////////////////////////////////////////////////////////////
 BOOST_AUTO_TEST_SUITE(binary_operator_plus)
-	BOOST_AUTO_TEST_CASE(returns_the_result_of_adding_two_rational_numbers)
+	BOOST_AUTO_TEST_CASE(should_return_the_sum_of_two_rational_numbers)
 	{
 		VerifyRational(CRational(1, 2) + CRational(1, 6), 2, 3);
 	}
-	BOOST_AUTO_TEST_CASE(returns_the_result_of_adding_rational_number_and_integer)
+	BOOST_AUTO_TEST_CASE(should_return_the_sum_of_rational_number_and_integer)
 	{
 		VerifyRational(CRational(1, 2) + 1, 3, 2);
 	}
-	BOOST_AUTO_TEST_CASE(returns_the_result_of_adding_integer_and_rational_number)
+	BOOST_AUTO_TEST_CASE(should_return_the_sum_of_integer_and_rational_number)
 	{
 		VerifyRational(1 + CRational(1, 2), 3, 2);
 	}
@@ -150,15 +150,15 @@ BOOST_AUTO_TEST_SUITE_END()
 //	1 - (1/2)     = (1/2)
 //////////////////////////////////////////////////////////////////////////
 BOOST_AUTO_TEST_SUITE(binary_operator_minus)
-BOOST_AUTO_TEST_CASE(returns_the_result_of_subtraction_two_rational_numbers)
+BOOST_AUTO_TEST_CASE(should_return_the_complement_of_two_rational_numbers)
 {
 	VerifyRational(CRational(1, 2) - CRational(1, 6), 1, 3);
 }
-BOOST_AUTO_TEST_CASE(returns_the_result_of_subtraction_rational_number_and_integer)
+BOOST_AUTO_TEST_CASE(should_return_the_complement_of_rational_number_and_integer)
 {
 	VerifyRational(CRational(1, 2) - 1, -1, 2);
 }
-BOOST_AUTO_TEST_CASE(returns_the_result_of_subtraction_integer_and_rational_number)
+BOOST_AUTO_TEST_CASE(should_return_the_complement_of_integer_and_rational_number)
 {
 	VerifyRational(1 - CRational(1, 2), 1, 2);
 }
@@ -172,12 +172,12 @@ BOOST_AUTO_TEST_SUITE_END()
 //	(1/2) += (1/6)  → (2/3)
 //	(1/2) += 1      → (3/2)
 //////////////////////////////////////////////////////////////////////////
-BOOST_AUTO_TEST_SUITE(operator_plus_and_equal)
-BOOST_AUTO_TEST_CASE(returns_the_result_of_adding_two_rational_numbers)
+BOOST_AUTO_TEST_SUITE(plus_equal_operator)
+BOOST_AUTO_TEST_CASE(should_add_second_rational_number_to_first_rational_number)
 {
 	VerifyRational(CRational(1, 2) += CRational(1, 6), 2, 3);
 }
-BOOST_AUTO_TEST_CASE(returns_the_result_of_adding_rational_number_and_integer)
+BOOST_AUTO_TEST_CASE(should_add_integer_to_first_rational_number)
 {
 	VerifyRational(CRational(1, 2) += 1, 3, 2);
 }
@@ -192,12 +192,12 @@ BOOST_AUTO_TEST_SUITE_END()
 // (1/2) -= (1/6)  → (1/3)
 // (1/2) -= 1      → (-1/2)
 //////////////////////////////////////////////////////////////////////////
-BOOST_AUTO_TEST_SUITE(operator_minus_and_equal)
-BOOST_AUTO_TEST_CASE(returns_the_result_of_subtraction_two_rational_numbers)
+BOOST_AUTO_TEST_SUITE(minus_equal_operator)
+BOOST_AUTO_TEST_CASE(should_subtract_second_rational_number_from_first_rational_number)
 {
 	VerifyRational(CRational(1, 2) -= CRational(1, 6), 1, 3);
 }
-BOOST_AUTO_TEST_CASE(returns_the_result_of_subtraction_rational_number_and_integer)
+BOOST_AUTO_TEST_CASE(should_subtract_integer_from_first_rational_number)
 {
 	VerifyRational(CRational(1, 2) -= 1, -1, 2);
 }
@@ -213,16 +213,16 @@ BOOST_AUTO_TEST_SUITE_END()
 //	(1/2) * (-3)  = (-3/2)
 //	7 * (2/3)     = (14/3)
 //////////////////////////////////////////////////////////////////////////
-BOOST_AUTO_TEST_SUITE(binary_operator_multiplicaton)
-BOOST_AUTO_TEST_CASE(returns_the_result_of_multiplicaton_two_rational_numbers)
+BOOST_AUTO_TEST_SUITE(multiplicaton_operator)
+BOOST_AUTO_TEST_CASE(should_return_the_result_of_multiplicaton_two_rational_numbers)
 {
 	VerifyRational(CRational(1, 2) * CRational(2, 3), 1, 3);
 }
-BOOST_AUTO_TEST_CASE(returns_the_result_of_multiplicaton_rational_number_and_integer)
+BOOST_AUTO_TEST_CASE(should_return_the_result_of_multiplicaton_rational_number_and_integer)
 {
 	VerifyRational(CRational(1, 2) * -3, -3, 2);
 }
-BOOST_AUTO_TEST_CASE(returns_the_result_of_multiplicaton_integer_and_rational_number)
+BOOST_AUTO_TEST_CASE(should_return_the_result_of_multiplicaton_integer_and_rational_number)
 {
 	VerifyRational(7 * CRational(2, 3), 14, 3);
 }
@@ -239,16 +239,16 @@ BOOST_AUTO_TEST_SUITE_END()
 //	(1/2) ⁄ 5     = (1/10)
 //	7 ⁄ (2/3)     = (21/2)
 //////////////////////////////////////////////////////////////////////////
-BOOST_AUTO_TEST_SUITE(binary_operator_division)
-BOOST_AUTO_TEST_CASE(returns_the_result_of_division_two_rational_numbers)
+BOOST_AUTO_TEST_SUITE(division_operator)
+BOOST_AUTO_TEST_CASE(should_return_the_result_of_division_two_rational_numbers)
 {
 	VerifyRational(CRational(1, 2) / CRational(2, 3), 3, 4);
 }
-BOOST_AUTO_TEST_CASE(returns_the_result_of_division_rational_number_and_integer)
+BOOST_AUTO_TEST_CASE(should_return_the_result_of_division_rational_number_and_integer)
 {
 	VerifyRational(CRational(1, 2) / 5, 1, 10);
 }
-BOOST_AUTO_TEST_CASE(returns_the_result_of_division_integer_and_rational_number)
+BOOST_AUTO_TEST_CASE(should_return_the_result_of_division_integer_and_rational_number)
 {
 	VerifyRational(7 / CRational(2, 3), 21, 2);
 }
@@ -264,12 +264,12 @@ BOOST_AUTO_TEST_SUITE_END()
 //	(1/2) *= (2/3) → (1/3)
 //	(1/2) *= 3     → (3/2)
 //////////////////////////////////////////////////////////////////////////
-BOOST_AUTO_TEST_SUITE(operator_multiple_and_equal)
-BOOST_AUTO_TEST_CASE(returns_the_result_of_multiple_two_rational_numbers)
+BOOST_AUTO_TEST_SUITE(multiple_equal_operator)
+BOOST_AUTO_TEST_CASE(should_multiply_the_first_rational_number_by_second_rational_number)
 {
 	VerifyRational(CRational(1, 2) *= CRational(2, 3), 1, 3);
 }
-BOOST_AUTO_TEST_CASE(returns_the_result_of_multiple_rational_number_and_integer)
+BOOST_AUTO_TEST_CASE(should_multiply_the_rational_number_by_integer)
 {
 	VerifyRational(CRational(1, 2) *= 3, 3, 2);
 }
@@ -286,12 +286,12 @@ BOOST_AUTO_TEST_SUITE_END()
 //	(3/4) /= (3/8) → (2/1)
 //	(1/2) /= 3     → (1/6)
 //////////////////////////////////////////////////////////////////////////
-BOOST_AUTO_TEST_SUITE(operator_division_and_equal)
-BOOST_AUTO_TEST_CASE(returns_the_result_of_division_two_rational_numbers)
+BOOST_AUTO_TEST_SUITE(division_and_equal_operator)
+BOOST_AUTO_TEST_CASE(should_divide_the_first_rational_number_by_second_rational_number)
 {
 	VerifyRational(CRational(1, 2) /= CRational(2, 3), 3, 4);
 }
-BOOST_AUTO_TEST_CASE(returns_the_result_of_division_rational_number_and_integer)
+BOOST_AUTO_TEST_CASE(should_divide_the_rational_number_by_integer)
 {
 	VerifyRational(CRational(1, 2) /= 3, 1, 6);
 }
@@ -312,35 +312,35 @@ BOOST_AUTO_TEST_SUITE_END()
 //	3 != (2/3)     → true
 //////////////////////////////////////////////////////////////////////////
 BOOST_AUTO_TEST_SUITE(bool_operator_equal)
-BOOST_AUTO_TEST_CASE(returns_true_if_two_rational_numbers_are_equal)
-{
-	BOOST_CHECK(CRational(1, 2) == CRational(1, 2));
-}
-BOOST_AUTO_TEST_CASE(returns_true_if_rational_number_and_integer_are_equal)
-{
-	BOOST_CHECK(CRational(4, 1) == 4);
-}
-BOOST_AUTO_TEST_CASE(returns_true_if_integer_and_rational_number_are_equal)
-{
-	BOOST_CHECK(3 == CRational(3, 1));
-}
+	BOOST_AUTO_TEST_CASE(return_true_if_two_rational_numbers_are_equal)
+	{
+		BOOST_CHECK(CRational(1, 2) == CRational(1, 2));
+	}
+	BOOST_AUTO_TEST_CASE(return_true_if_rational_number_and_integer_are_equal)
+	{
+		BOOST_CHECK(CRational(4, 1) == 4);
+	}
+	BOOST_AUTO_TEST_CASE(return_true_if_integer_and_rational_number_are_equal)
+	{
+		BOOST_CHECK(3 == CRational(3, 1));
+	}
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(bool_operator_not_equal)
-BOOST_AUTO_TEST_CASE(returns_true_if_two_rational_numbers_are_not_equal)
-{
-	BOOST_CHECK(CRational(1, 2) != CRational(2, 3));
-}
-BOOST_AUTO_TEST_CASE(returns_true_if_rational_number_and_integer_are_equal)
-{
-	BOOST_CHECK(CRational(1, 2) != 7);
-	BOOST_CHECK(!(CRational(7, 1) != 7));
-}
-BOOST_AUTO_TEST_CASE(returns_true_if_integer_and_rational_number_are_equal)
-{
-	BOOST_CHECK(3 != CRational(2, 3));
-	BOOST_CHECK(!(3 != CRational(3, 1)));
-}
+	BOOST_AUTO_TEST_CASE(return_true_if_two_rational_numbers_are_not_equal)
+	{
+		BOOST_CHECK(CRational(1, 2) != CRational(2, 3));
+	}
+	BOOST_AUTO_TEST_CASE(return_true_if_rational_number_and_integer_are_equal)
+	{
+		BOOST_CHECK(CRational(1, 2) != 7);
+		BOOST_CHECK(!(CRational(7, 1) != 7));
+	}
+	BOOST_AUTO_TEST_CASE(return_true_if_integer_and_rational_number_are_equal)
+	{
+		BOOST_CHECK(3 != CRational(2, 3));
+		BOOST_CHECK(!(3 != CRational(3, 1)));
+	}
 BOOST_AUTO_TEST_SUITE_END()
 
 
@@ -357,69 +357,69 @@ BOOST_AUTO_TEST_SUITE_END()
 //	3 >= (8/2)     → false
 //////////////////////////////////////////////////////////////////////////
 BOOST_AUTO_TEST_SUITE(bool_operator_greater)
-BOOST_AUTO_TEST_CASE(returns_true_if_first_rational_number_is_greater_than_second)
-{
-	BOOST_CHECK(CRational(1, 2) > CRational(1, 3));
-}
-BOOST_AUTO_TEST_CASE(returns_true_if_rational_number_is_greater_than_integer)
-{
-	BOOST_CHECK(CRational(4, 1) > 3);
-}
-BOOST_AUTO_TEST_CASE(returns_true_if_integer_is_greater_than_rational_number)
-{
-	BOOST_CHECK(1 > CRational(1, 2));
-}
+	BOOST_AUTO_TEST_CASE(returns_true_if_first_rational_number_is_greater_than_second)
+	{
+		BOOST_CHECK(CRational(1, 2) > CRational(1, 3));
+	}
+	BOOST_AUTO_TEST_CASE(returns_true_if_rational_number_is_greater_than_integer)
+	{
+		BOOST_CHECK(CRational(4, 1) > 3);
+	}
+	BOOST_AUTO_TEST_CASE(returns_true_if_integer_is_greater_than_rational_number)
+	{
+		BOOST_CHECK(1 > CRational(1, 2));
+	}
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(bool_operator_less)
-BOOST_AUTO_TEST_CASE(returns_true_if_first_rational_number_is_less_than_second)
-{
-	BOOST_CHECK(CRational(1, 3) < CRational(1, 2));
-}
-BOOST_AUTO_TEST_CASE(returns_true_if_rational_number_is_less_than_integer)
-{
-	BOOST_CHECK(CRational(1, 2) < 1);
-}
-BOOST_AUTO_TEST_CASE(returns_true_if_integer_is_less_than_rational_number)
-{
-	BOOST_CHECK(1 < CRational(3, 2));
-}
+	BOOST_AUTO_TEST_CASE(returns_true_if_first_rational_number_is_less_than_second)
+	{
+		BOOST_CHECK(CRational(1, 3) < CRational(1, 2));
+	}
+	BOOST_AUTO_TEST_CASE(returns_true_if_rational_number_is_less_than_integer)
+	{
+		BOOST_CHECK(CRational(1, 2) < 1);
+	}
+	BOOST_AUTO_TEST_CASE(returns_true_if_integer_is_less_than_rational_number)
+	{
+		BOOST_CHECK(1 < CRational(3, 2));
+	}
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(bool_operator_greater_or_equal)
-BOOST_AUTO_TEST_CASE(returns_true_if_first_rational_number_is_greater_than_second_or_they_are_equal)
-{
-	BOOST_CHECK(CRational(1, 2) >= CRational(1, 3));
-	BOOST_CHECK(CRational(1, 2) >= CRational(1, 2));
-}
-BOOST_AUTO_TEST_CASE(returns_true_if_rational_number_is_greater_than_integer_or_they_are_equal)
-{
-	BOOST_CHECK(CRational(4, 1) >= 3);
-	BOOST_CHECK(CRational(3, 1) >= 3);
-}
-BOOST_AUTO_TEST_CASE(returns_true_if_integer_is_greater_than_rational_number_or_they_are_equal)
-{
-	BOOST_CHECK(1 >= CRational(1, 2));
-	BOOST_CHECK(2 >= CRational(2, 1));
-}
+	BOOST_AUTO_TEST_CASE(returns_true_if_first_rational_number_is_greater_than_second_or_they_are_equal)
+	{
+		BOOST_CHECK(CRational(1, 2) >= CRational(1, 3));
+		BOOST_CHECK(CRational(1, 2) >= CRational(1, 2));
+	}
+	BOOST_AUTO_TEST_CASE(returns_true_if_rational_number_is_greater_than_integer_or_they_are_equal)
+	{
+		BOOST_CHECK(CRational(4, 1) >= 3);
+		BOOST_CHECK(CRational(3, 1) >= 3);
+	}
+	BOOST_AUTO_TEST_CASE(returns_true_if_integer_is_greater_than_rational_number_or_they_are_equal)
+	{
+		BOOST_CHECK(1 >= CRational(1, 2));
+		BOOST_CHECK(2 >= CRational(2, 1));
+	}
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(bool_operator_less_or_equal)
-BOOST_AUTO_TEST_CASE(returns_true_if_first_rational_number_is_less_than_second_or_they_are_equal)
-{
-	BOOST_CHECK(CRational(1, 3) <= CRational(1, 2));
-	BOOST_CHECK(CRational(1, 3) <= CRational(1, 3));
-}
-BOOST_AUTO_TEST_CASE(returns_true_if_rational_number_is_less_than_integer_or_they_are_equal)
-{
-	BOOST_CHECK(CRational(1, 2) <= 1);
-	BOOST_CHECK(CRational(2, 1) <= 2);
-}
-BOOST_AUTO_TEST_CASE(returns_true_if_integer_is_less_than_rational_number_or_they_are_equal)
-{
-	BOOST_CHECK(1 <= CRational(3, 2));
-	BOOST_CHECK(2 <= CRational(2, 1));
-}
+	BOOST_AUTO_TEST_CASE(returns_true_if_first_rational_number_is_less_than_second_or_they_are_equal)
+	{
+		BOOST_CHECK(CRational(1, 3) <= CRational(1, 2));
+		BOOST_CHECK(CRational(1, 3) <= CRational(1, 3));
+	}
+	BOOST_AUTO_TEST_CASE(returns_true_if_rational_number_is_less_than_integer_or_they_are_equal)
+	{
+		BOOST_CHECK(CRational(1, 2) <= 1);
+		BOOST_CHECK(CRational(2, 1) <= 2);
+	}
+	BOOST_AUTO_TEST_CASE(returns_true_if_integer_is_less_than_rational_number_or_they_are_equal)
+	{
+		BOOST_CHECK(1 <= CRational(3, 2));
+		BOOST_CHECK(2 <= CRational(2, 1));
+	}
 BOOST_AUTO_TEST_SUITE_END()
 
 //////////////////////////////////////////////////////////////////////////
@@ -427,13 +427,13 @@ BOOST_AUTO_TEST_SUITE_END()
 //	std::ostream в формате <числитель>/<знаменатель>, 
 //	например: 7/15
 //////////////////////////////////////////////////////////////////////////
-BOOST_AUTO_TEST_SUITE(operator_output_in_stream)
-BOOST_AUTO_TEST_CASE(should_output_the_rational_number_in_the_stream)
-{
-	std::stringstream output = std::stringstream();
-	output << CRational(7,15);
-	BOOST_CHECK_EQUAL(output.str(), "7/15");
-}
+BOOST_AUTO_TEST_SUITE(output_operator)
+	BOOST_AUTO_TEST_CASE(should_output_the_rational_number_in_the_stream)
+	{
+		std::stringstream output = std::stringstream();
+		output << CRational(7,15);
+		BOOST_CHECK_EQUAL(output.str(), "7/15");
+	}
 
 BOOST_AUTO_TEST_SUITE_END()
 
