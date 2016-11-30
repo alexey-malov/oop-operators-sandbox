@@ -72,7 +72,13 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	CRational r(3, 5)
 //	cout << r.ToDouble(); // Должно вывести 0.6
 //////////////////////////////////////////////////////////////////////////
-
+BOOST_AUTO_TEST_SUITE(ToDouble_function)
+	BOOST_AUTO_TEST_CASE(returns_the_result_of_division_numerator_and_denumerator)
+	{
+		CRational rational(3, 5);
+		BOOST_CHECK_CLOSE(rational.ToDouble(), 0.6, 0.01);
+	}
+BOOST_AUTO_TEST_SUITE_END()
 
 
 
