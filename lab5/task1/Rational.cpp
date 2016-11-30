@@ -20,11 +20,6 @@ CRational::CRational(int numerator, int denominator)
 	}
 	Normalize();
 }
-//CRational::CRational(int number)
-//	: m_numerator(number)
-//	, m_denominator(1)
-//{
-//}
 
 int CRational::GetNumerator() const
 {
