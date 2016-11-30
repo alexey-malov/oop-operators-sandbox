@@ -196,4 +196,4 @@ private:
 unsigned GCD(unsigned a, unsigned b);
 CRational const operator +(CRational const& a, CRational const& b);
 CRational const operator -(CRational const& a, CRational const& b);
-
+CRational const operator *(CRational const& a, CRational const& b);
