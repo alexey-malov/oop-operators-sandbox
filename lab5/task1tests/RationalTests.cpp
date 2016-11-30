@@ -153,6 +153,16 @@ BOOST_AUTO_TEST_SUITE_END()
 //	(1/2) += (1/6)  → (2/3)
 //	(1/2) += 1      → (3/2)
 //////////////////////////////////////////////////////////////////////////
+BOOST_AUTO_TEST_SUITE(operator_plus_and_equal)
+BOOST_AUTO_TEST_CASE(returns_the_result_of_adding_two_rational_numbers)
+{
+	VerifyRational(CRational(1, 2) += CRational(1, 6), 2, 3);
+}
+BOOST_AUTO_TEST_CASE(returns_the_result_of_adding_rational_number_and_integer)
+{
+	VerifyRational(CRational(1, 2) += 1, 3, 2);
+}
+BOOST_AUTO_TEST_SUITE_END()
 
 
 
@@ -163,7 +173,16 @@ BOOST_AUTO_TEST_SUITE_END()
 // (1/2) -= (1/6)  → (1/3)
 // (1/2) -= 1      → (-1/2)
 //////////////////////////////////////////////////////////////////////////
-
+BOOST_AUTO_TEST_SUITE(operator_minus_and_equal)
+BOOST_AUTO_TEST_CASE(returns_the_result_of_subtraction_two_rational_numbers)
+{
+	VerifyRational(CRational(1, 2) -= CRational(1, 6), 1, 3);
+}
+BOOST_AUTO_TEST_CASE(returns_the_result_of_subtraction_rational_number_and_integer)
+{
+	VerifyRational(CRational(1, 2) -= 1, -1, 2);
+}
+BOOST_AUTO_TEST_SUITE_END()
 
 
 
