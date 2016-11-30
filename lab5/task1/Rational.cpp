@@ -182,9 +182,29 @@ bool const operator !=(CRational const& a, CRational const& b)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 12. Реализовать операторы <, >, <=, >=
 //////////////////////////////////////////////////////////////////////////
+bool const operator >(CRational const& a, CRational const& b)
+{
+	int aNumerator = a.GetNumerator() * b.GetDenominator();
+	int bNumerator = b.GetNumerator() * a.GetDenominator();
+	return (aNumerator > bNumerator);
+}
 
+bool const operator <(CRational const& a, CRational const& b)
+{
+	int aNumerator = a.GetNumerator() * b.GetDenominator();
+	int bNumerator = b.GetNumerator() * a.GetDenominator();
+	return (aNumerator < bNumerator);
+}
 
+bool const operator >=(CRational const& a, CRational const& b)
+{
+	return ((a > b) || (a == b));
+}
 
+bool const operator <=(CRational const& a, CRational const& b)
+{
+	return ((a < b) || (a == b));
+}
 
 //////////////////////////////////////////////////////////////////////////
 // TODO: 13. Реализовать оператор вывода рационального числа в выходной поток 
