@@ -245,7 +245,16 @@ BOOST_AUTO_TEST_SUITE_END()
 //	(1/2) *= (2/3) → (1/3)
 //	(1/2) *= 3     → (3/2)
 //////////////////////////////////////////////////////////////////////////
-
+BOOST_AUTO_TEST_SUITE(operator_multiple_and_equal)
+BOOST_AUTO_TEST_CASE(returns_the_result_of_multiple_two_rational_numbers)
+{
+	VerifyRational(CRational(1, 2) *= CRational(2, 3), 1, 3);
+}
+BOOST_AUTO_TEST_CASE(returns_the_result_of_multiple_rational_number_and_integer)
+{
+	VerifyRational(CRational(1, 2) *= 3, 3, 2);
+}
+BOOST_AUTO_TEST_SUITE_END()
 
 
 
@@ -258,6 +267,16 @@ BOOST_AUTO_TEST_SUITE_END()
 //	(3/4) /= (3/8) → (2/1)
 //	(1/2) /= 3     → (1/6)
 //////////////////////////////////////////////////////////////////////////
+BOOST_AUTO_TEST_SUITE(operator_division_and_equal)
+BOOST_AUTO_TEST_CASE(returns_the_result_of_division_two_rational_numbers)
+{
+	VerifyRational(CRational(1, 2) /= CRational(2, 3), 3, 4);
+}
+BOOST_AUTO_TEST_CASE(returns_the_result_of_division_rational_number_and_integer)
+{
+	VerifyRational(CRational(1, 2) /= 3, 1, 6);
+}
+BOOST_AUTO_TEST_SUITE_END()
 
 
 
