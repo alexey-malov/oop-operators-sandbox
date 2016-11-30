@@ -194,7 +194,7 @@ BOOST_AUTO_TEST_SUITE_END()
 //	(1/2) * (-3)  = (-3/2)
 //	7 * (2/3)     = (14/3)
 //////////////////////////////////////////////////////////////////////////
-BOOST_AUTO_TEST_SUITE(binary_operator_multiple)
+BOOST_AUTO_TEST_SUITE(binary_operator_multiplicaton)
 BOOST_AUTO_TEST_CASE(returns_the_result_of_multiplicaton_two_rational_numbers)
 {
 	VerifyRational(CRational(1, 2) * CRational(2, 3), 1, 3);
@@ -220,7 +220,20 @@ BOOST_AUTO_TEST_SUITE_END()
 //	(1/2) ⁄ 5     = (1/10)
 //	7 ⁄ (2/3)     = (21/2)
 //////////////////////////////////////////////////////////////////////////
-
+BOOST_AUTO_TEST_SUITE(binary_operator_division)
+BOOST_AUTO_TEST_CASE(returns_the_result_of_division_two_rational_numbers)
+{
+	VerifyRational(CRational(1, 2) / CRational(2, 3), 3, 4);
+}
+BOOST_AUTO_TEST_CASE(returns_the_result_of_division_rational_number_and_integer)
+{
+	VerifyRational(CRational(1, 2) / 5, 1, 10);
+}
+BOOST_AUTO_TEST_CASE(returns_the_result_of_division_integer_and_rational_number)
+{
+	VerifyRational(7 / CRational(2, 3), 21, 2);
+}
+BOOST_AUTO_TEST_SUITE_END()
 
 
 
