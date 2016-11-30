@@ -8,13 +8,13 @@ class CRational final
 {
 public:
 	CRational(int numerator = 0, int denominator = 1);
+	//CRational(int number);
 
 	// Возвращает числитель
 	int GetNumerator() const;
 
 	// Возвращает знаменатель
 	int GetDenominator() const;
-
 	//////////////////////////////////////////////////////////////////////////
 	// TODO: 1. Реализовать метод ToDouble() согласно заданию
 	// Возвращает отношение числителя и знаменателя в виде числа double
@@ -22,7 +22,7 @@ public:
 	//	CRational r(3, 5)
 	//	cout << r.ToDouble(); // Должно вывести 0.6
 	//////////////////////////////////////////////////////////////////////////
-
+	double ToDouble() const;
 
 
 
@@ -43,8 +43,8 @@ public:
 	//  -someRational = someOtherRational;
 	//	+someRational = someOtherRational;
 	//////////////////////////////////////////////////////////////////////////
-
-
+	CRational const operator +();
+	CRational const operator -();
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -55,7 +55,6 @@ public:
 	//	(1/2) + 1     = (3/2)
 	//	1 + (1/2)     = (3/2)
 	//////////////////////////////////////////////////////////////////////////
-
 
 
 
@@ -78,7 +77,7 @@ public:
 	//	(1/2) += (1/6)  → (2/3)
 	//	(1/2) += 1      → (3/2)
 	//////////////////////////////////////////////////////////////////////////
-
+	CRational const operator +=(CRational const& b);
 
 
 
@@ -88,7 +87,7 @@ public:
 	// (1/2) -= (1/6)  → (1/3)
 	// (1/2) -= 1      → (-1/2)
 	//////////////////////////////////////////////////////////////////////////
-
+	CRational const operator -=(CRational const& b);
 
 
 
@@ -125,7 +124,7 @@ public:
 	//	(1/2) *= (2/3) → (1/3)
 	//	(1/2) *= 3     → (3/2)
 	//////////////////////////////////////////////////////////////////////////
-
+	CRational const operator *=(CRational const& b);
 
 
 
@@ -137,7 +136,7 @@ public:
 	//	(1/2) /= (2/3) → (3/4)
 	//	(1/2) /= 3     → (1/6)
 	//////////////////////////////////////////////////////////////////////////
-
+	CRational const operator /=(CRational const& b);
 
 
 
@@ -179,7 +178,6 @@ public:
 
 
 
-
 	//////////////////////////////////////////////////////////////////////////
 	// TODO: 14. Реализовать оператор ввода рационального числа из входного потока 
 	//	std::istream в формате <числитель>/<знаменатель>, 
@@ -195,3 +193,14 @@ private:
 
 // Вычисляет наибольший общий делитель (greatest common denominator) чисел a и b
 unsigned GCD(unsigned a, unsigned b);
+CRational const operator +(CRational const& a, CRational const& b);
+CRational const operator -(CRational const& a, CRational const& b);
+CRational const operator *(CRational const& a, CRational const& b);
+CRational const operator /(CRational const& a, CRational const& b);
+bool const operator ==(CRational const& a, CRational const& b);
+bool const operator !=(CRational const& a, CRational const& b);
+bool const operator >(CRational const& a, CRational const& b);
+bool const operator <(CRational const& a, CRational const& b);
+bool const operator >=(CRational const& a, CRational const& b);
+bool const operator <=(CRational const& a, CRational const& b);
+std::ostream & operator <<(std::ostream &stream, CRational const& rational);
