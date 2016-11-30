@@ -93,7 +93,20 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //  -someRational = someOtherRational;
 //	+someRational = someOtherRational;
 //////////////////////////////////////////////////////////////////////////
+BOOST_AUTO_TEST_SUITE(unary_operator_minus)
+	BOOST_AUTO_TEST_CASE(returns_the_negative_of_rational_number)
+	{
+		VerifyRational(-CRational(3, 5), -3, 5);
+	}
+BOOST_AUTO_TEST_SUITE_END()
 
+BOOST_AUTO_TEST_SUITE(unary_operator_plus)
+BOOST_AUTO_TEST_CASE(returns_the_positive_of_rational_number)
+{
+	VerifyRational(+CRational(3, 5), 3, 5);
+	VerifyRational(+CRational(-3, 5), -3, 5);
+}
+BOOST_AUTO_TEST_SUITE_END()
 
 
 
