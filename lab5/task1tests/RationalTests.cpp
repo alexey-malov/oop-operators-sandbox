@@ -42,6 +42,21 @@ void VerifyRational(const CRational & r, int expectedNumerator, int expectedDeno
 	BOOST_CHECK_EQUAL(r.GetDenominator(), expectedDenominator);
 }
 
+void VerifyInputOperator(const std::string & str, boost::optional<CRational> expectedResult)
+{
+	std::istringstream input(str);
+	CRational rat;
+	input >> rat;
+	if (expectedResult == boost::none)
+	{
+		BOOST_CHECK_EQUAL(input.fail(), true);
+	}
+	else
+	{
+		VerifyRational(rat, expectedResult->GetNumerator(), expectedResult->GetDenominator());
+	}
+}
+
 BOOST_AUTO_TEST_SUITE(Rational_number)
 	BOOST_AUTO_TEST_CASE(is_0_by_default)
 	{
@@ -414,6 +429,13 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	std::istream в формате <числитель>/<знаменатель>, 
 //	например: 7/15
 //////////////////////////////////////////////////////////////////////////
+	BOOST_AUTO_TEST_CASE(can_be_read_from_istream)
+	{
+		VerifyInputOperator("7/15", CRational(7, 15));
+		VerifyInputOperator("-1/1", CRational(-1, 1));
+		VerifyInputOperator("0", CRational(0, 1));
+		VerifyInputOperator("7.15", boost::none);
+	}
 
 
 
