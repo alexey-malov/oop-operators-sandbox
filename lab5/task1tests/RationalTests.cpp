@@ -41,6 +41,21 @@ void VerifyRational(const CRational & r, int expectedNumerator, int expectedDeno
 	BOOST_CHECK_EQUAL(r.GetDenominator(), expectedDenominator);
 }
 
+void VerifyInputOperator(const std::string & str, boost::optional<CRational> expectedResult)
+{
+	std::istringstream input(str);
+	CRational rat;
+	input >> rat;
+	if (expectedResult == boost::none)
+	{
+		BOOST_CHECK_EQUAL(input.fail(), true);
+	}
+	else
+	{
+		VerifyRational(rat, expectedResult->GetNumerator(), expectedResult->GetDenominator());
+	}
+}
+
 void VerifyCompoundRational(const std::pair<int, CRational> & result,
                             const std::pair<int, CRational> & expectedResult)
 {
@@ -108,7 +123,7 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	CRational r3 = +r2; // r3 также равно -3/5
 //	assert(r3.GetNumerator(), -3);
 //	assert(r3.GetDenominator(), 5);
-// Унарный минус возвращает раицональное число без знака
+// Унарный минус возвращает раицональное число с противоположным знаком
 // Унарный плюс возвращает рациональное число, равное текущему
 // Реализация не должна допускать операции вроде:
 //  -someRational = someOtherRational;
@@ -120,18 +135,12 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 		VerifyRational(+CRational(0, 5), 0, 1);
 	}
 
-	BOOST_AUTO_TEST_CASE(has_unary_minus_that_negates_itself)
+	BOOST_AUTO_TEST_CASE(has_unary_minus_that_return_unsigned_fraction)
 	{
 		VerifyRational(-CRational(3, 5), -3, 5);
 		VerifyRational(-CRational(-3, -5), -3, 5);
 		VerifyRational(-CRational(3, -5), 3, 5);
 		VerifyRational(-CRational(-3, 5), 3, 5);
-		{
-			const CRational r1(-0, 5);
-			CRational r2 = -r1;
-			VerifyRational(r2, -0, 1);
-			VerifyRational(r2, +0, 1);
-		}
 	}
 
 
@@ -428,6 +437,13 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	std::istream в формате <числитель>/<знаменатель>, 
 //	например: 7/15
 //////////////////////////////////////////////////////////////////////////
+	BOOST_AUTO_TEST_CASE(can_be_read_from_istream)
+	{
+		VerifyInputOperator("7/15", CRational(7, 15));
+		VerifyInputOperator("-1/1", CRational(-1, 1));
+		VerifyInputOperator("0", CRational(0, 1));
+		VerifyInputOperator("7.15", boost::none);
+	}
 
 
 

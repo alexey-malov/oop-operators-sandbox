@@ -80,8 +80,7 @@ const CRational CRational::operator+() const
 
 const CRational CRational::operator-() const
 {
-	int k = (m_denominator < 0 || m_denominator < 0) ? +1 : -1;
-	return CRational(k * m_numerator, m_denominator);
+	return CRational(-m_numerator, m_denominator);
 }
 
 
@@ -254,6 +253,20 @@ std::ostream & operator<<(std::ostream & output, const CRational & value)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 14. Реализовать оператор ввода рационального числа из входного потока 
 //////////////////////////////////////////////////////////////////////////
+std::istream & operator >> (std::istream & input, CRational & rat)
+{
+	int numerator = 0;
+	int denominator = 1;
+	if ((input >> numerator) && (input.get() == '/') && (input >> denominator))
+	{
+		rat = CRational(numerator, denominator);
+	}
+	else
+	{
+		input.setstate(std::ios_base::failbit);
+	}
+	return input;
+}
 
 
 

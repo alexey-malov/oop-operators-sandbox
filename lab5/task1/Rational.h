@@ -39,7 +39,7 @@ public:
 	//	CRational r3 = +r2; // r3 также равно -3/5
 	//	assert(r3.GetNumerator(), -3);
 	//	assert(r3.GetDenominator(), 5);
-	// Унарный минус возвращает раицональное число без знака
+	// Унарный минус возвращает рациональное число с противоположным знаком
 	// Унарный плюс возвращает рациональное число, равное текущему
 	// Реализация не должна допускать операции вроде:
 	//  -someRational = someOtherRational;
@@ -234,3 +234,5 @@ std::ostream & operator<<(std::ostream & output, const CRational & value);
 
 const bool operator != (const CRational & lhs, const CRational & rhs);
 const bool operator == (const CRational & lhs, const CRational & rhs);
+
+std::istream & operator>>(std::istream & input, CRational & rat);
