@@ -195,3 +195,4 @@ private:
 
 // Вычисляет наибольший общий делитель (greatest common denominator) чисел a и b
 unsigned GCD(unsigned a, unsigned b);
+CRational const operator +(CRational const& a, CRational const& b);
