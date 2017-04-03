@@ -4,6 +4,8 @@
 #include "stdafx.h"
 #include "../task1/Rational.h"
 
+const double C_ACCURACY = 10e-15;
+
 BOOST_AUTO_TEST_CASE(Test_Greates_Common_Denominator)
 {
 	BOOST_CHECK_EQUAL(GCD(2, 3), 1u);
@@ -14,8 +16,6 @@ BOOST_AUTO_TEST_CASE(Test_Greates_Common_Denominator)
 	BOOST_CHECK_EQUAL(GCD(2, 0), 2u);
 	BOOST_CHECK_EQUAL(GCD(0, 0), 1u);
 }
-
-
 
 /*
   Рациональное число:
@@ -29,6 +29,11 @@ void VerifyRational(const CRational & r, int expectedNumerator, int expectedDeno
 {
 	BOOST_CHECK_EQUAL(r.GetNumerator(), expectedNumerator);
 	BOOST_CHECK_EQUAL(r.GetDenominator(), expectedDenominator);
+}
+
+void VerifyDouble(const CRational & r, double expectedDouble)
+{
+	BOOST_CHECK_CLOSE(r.ToDouble(), expectedDouble, C_ACCURACY);
 }
 
 BOOST_AUTO_TEST_SUITE(Rational_number)
@@ -64,7 +69,6 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 
 
 
-
 //////////////////////////////////////////////////////////////////////////
 // TODO: 1. Реализовать метод ToDouble() согласно заданию
 // Возвращает отношение числителя и знаменателя в виде числа double
@@ -73,7 +77,14 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	cout << r.ToDouble(); // Должно вывести 0.6
 //////////////////////////////////////////////////////////////////////////
 
-
+	BOOST_AUTO_TEST_CASE(can_get_numeric_in_double_format)
+	{
+		VerifyDouble(CRational(3, 5), 0.6);
+		VerifyDouble(CRational(1, 3), 0.33333333333333333);
+		VerifyDouble(CRational(0, 3), 0);
+		VerifyDouble(CRational(), 0);
+		VerifyDouble(CRational(-1, 3), -0.33333333333333333);
+	}
 
 
 //////////////////////////////////////////////////////////////////////////
